@@ -6,7 +6,7 @@ By **Rohit Sharma / [@hcclubb](https://t.me/hcclubb)**. An independent community
 
 **POCO F7 / onyx — Infinity-X 4.1, Android 17**, ROM incremental `1792766195`, SDK37, security patch `2026-10-01`. Recovery installer enforces these identifiers. Other ROMs, devices and ROM updates are **not verified**. An unlocked bootloader and a known-good boot backup/recovery path are required.
 
-Current base is [xiaomi-onyx-playground/android_kernel_xiaomi_sm8735](https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735/tree/7750565ada3d57e195798519b005d2b038e888c1), **Linux6.6.142**, runtime release `6.6.142-4k-g7750565ada3d-dirty`. The repository name retains the initial Konoha experiment; the released kernel is **not Konoha-based**.
+Current base is [xiaomi-onyx-playground/android_kernel_xiaomi_sm8735](https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735/tree/7750565ada3d57e195798519b005d2b038e888c1), **Linux6.6.142**, runtime release `6.6.142-4k-g7750565ada3d-dirty`. The repository is named `poco-f7-nethunter`; the released kernel is **not Konoha-based**.
 
 ## v0.1.2: what was tested
 

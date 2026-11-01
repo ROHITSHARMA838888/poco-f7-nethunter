@@ -67,8 +67,8 @@ boot backup and recovery access. No boot partition is written by this module.
 '''
 (ROOT / 'README.txt').write_text(readme, encoding='utf-8', newline='\n')
 credits = (OLD / 'CREDITS.txt').read_text(encoding='utf-8')
-credits += '\nWi-Fi v0.1.2: callback compatibility fixes for pinned aircrack-ng rtl8812au and rtl8188eus; WN monitor-state handling and software LED support.\nBuild evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter-konoha/actions/runs/41297489306\n'
-credits += '\nWN build evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter-konoha/actions/runs/41316130882\n'
+credits += '\nWi-Fi v0.1.2: callback compatibility fixes for pinned aircrack-ng rtl8812au and rtl8188eus; WN monitor-state handling and software LED support.\nBuild evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter/actions/runs/41297489306\n'
+credits += '\nWN build evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter/actions/runs/41316130882\n'
 (ROOT / 'CREDITS.txt').write_text(credits, encoding='utf-8', newline='\n')
 assert (ROOT / 'bin/usb-auth-guard').read_bytes() == (OLD / 'bin/usb-auth-guard').read_bytes()
 payload = ''.join(EXPECTED[n] + '  ' + n + '\n' for n in ('88XXau.ko', '8188eu.ko'))

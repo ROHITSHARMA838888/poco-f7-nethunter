@@ -39,6 +39,6 @@ redistributing. Full matching source and build modifications must accompany the
 release as required by the applicable licences; credits alone are not sufficient.
 
 Wi-Fi v0.1.2: callback compatibility fixes for pinned aircrack-ng rtl8812au and rtl8188eus; WN monitor-state handling and software LED support.
-Build evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter-konoha/actions/runs/41297489306
+Build evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter/actions/runs/41297489306
 
-WN build evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter-konoha/actions/runs/41316130882
+WN build evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter/actions/runs/41316130882
