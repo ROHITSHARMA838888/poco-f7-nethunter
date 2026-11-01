@@ -1,18 +1,42 @@
-# Install and rollback — v0.1.2
+# Simple flashing guide — Onyx NetHunter v0.1.2
 
-Only the exact tested POCOF7/onyx Infinity-X4.1 Android17 build is supported (incremental1792766195, SDK37, patch2026-10-01). Installer guards intentionally reject other layouts/ROMs; do not bypass them.
+> **Check first:** Only POCO F7 / onyx running the tested Infinity-X 4.1 Android 17 build: incremental `1792766195`, SDK `37`, patch `2026-10-01`. Other ROMs/updates are not verified. An unlocked bootloader, working recovery and your own current Boot backup are required. Do not bypass installer checks.
 
-1. Save a known-good **current boot partition backup**, the ROM recovery method and a rollback module package before proceeding. A ROM-extracted boot image is not a backup of a modified current boot. Disconnect external USB adapters.
-2. Verify both downloaded ZIP hashes against SHA256SUMS.txt.
-3. In OrangeFox recovery (tested unofficialR12), back up Boot for the current slot. Choose Install and the **kernel ZIP**. Do not wipe/format data. Installer targets active-slot boot only, validates header/layout and retains existing boot metadata. It does not flash vbmeta/init_boot/vendor_boot. It also installs theme files and a one-shot wallpaper hook; this is not solely an Image copy.
-4. If installation succeeds, reboot Android and unlock. On any error stop and retain the recovery log; do not repeatedly flash or switch slots blindly. Theme failure can occur after a kernel write; read the error before assuming nothing changed.
-5. In **KernelSU Next Manager**, install the **WiFi ZIP**. It checks exact running kernel/device/root and package hashes. Do not flash this module in recovery or manually run its boot service. It preserves earlier private payload directories.
-6. With adapters unplugged, reboot. Confirm module versionv0.1.2-dual-wifi-fix, then connect one adapter at a time. Reboot interrupts phone hotspot/internet.
+Download both ZIPs from [the release](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2), verify their hashes using `SHA256SUMS.txt`, and unplug all external adapters/OTG.
 
-The USB guard is a targeted workaround for the ROM HAL resetting the parent USB hub. It temporarily removes write bits from the hub authorized inode for exact adapter IDs, restores on unplug/exit, leaves the HAL running, and does not change USB authorization values or SELinux. It can affect reset recovery of other devices sharing that hub while the adapter is attached.
+## 1. Kernel ZIP → OrangeFox recovery
 
-## Rollback
+1. Copy `Onyx-NetHunter-v0.1.2-test.zip` to the phone.
+2. Reboot into **OrangeFox** (tested: unofficial R12).
+3. Open **Backup → Boot**. Back up the currently active slot and keep the backup somewhere accessible if Android cannot boot.
+4. Open **Install → select the kernel ZIP → Swipe to flash**.
+5. If successful, tap **Reboot System** and unlock Android.
 
-If Wi-Fi causes problems, remove OTG first. Disable onyx_verified_wifi in KernelSU and reboot without adapters. To restore the previous module use the previously saved v0.1.1 ZIP; its WN driver predates the current fixes and must not be treated as injection-qualified. Previous directories are retained, but disabling the module does not itself restore a different kernel or erase its files.
+## 2. Wi-Fi ZIP → KernelSU Next Manager
 
-If Android cannot boot, use the known-working recovery/fastboot path and restore **your own verified pre-flash boot backup to its original slot**. Do not use another person's boot image, format data or flash vbmeta as a generic repair. Theme installation keeps its own backup/state; preserve that before any manual theme rollback. Current successful users do not need to flash again simply because this release is published.
+1. Open **KernelSU Next Manager** and confirm root works.
+2. Open **Modules → Install**.
+3. Choose `Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip`.
+4. After successful installation, reboot **with adapters unplugged**.
+5. Unlock Android, wait about **30 seconds**, and connect one adapter at a time.
+
+## Important
+
+- **No data wipe or format is needed.** Kernel ZIP is for recovery; Wi-Fi ZIP is for KernelSU.
+- Do not flash `vbmeta`, `init_boot` or `vendor_boot`, bypass checks, manually run the module service or force-load mismatched drivers.
+- If installation fails, stop and save the log. Theme installation can fail **after the kernel write**; do not assume nothing changed or repeatedly flash.
+- Reboot interrupts the phone hotspot. If attaching an adapter causes reboot/reset loops, remove OTG and stop testing.
+- The kernel installer also installs Kali boot animation/wallpaper files and a one-shot wallpaper hook; wallpaper waits for Android/owner unlock. Kali apps/chroot are separate.
+- If the current kernel and module are already working, do not reflash just because a release was published.
+
+## If something goes wrong
+
+- **Android boots, module causes trouble:** unplug OTG, disable `onyx_verified_wifi` in KernelSU and reboot. An earlier module can be restored from your saved ZIP, but v0.1.1's WN driver predates these fixes and is not injection-qualified.
+- **Android does not boot:** use your known-working recovery/fastboot method to restore **your own pre-flash Boot backup to its original slot**. Do not use someone else's boot image or format data as a generic repair.
+- **Theme problem:** preserve the recovery log and theme backup/state. Disabling the Wi-Fi module does not restore the kernel or theme files.
+
+## USB guard note
+
+The Wi-Fi module includes a targeted workaround for the ROM USB HAL resetting the adapter's parent hub. For the supported USB IDs, it temporarily removes write bits from the hub's `authorized` inode and restores the original mode on unplug/exit. It leaves the HAL running and does not change USB authorization values, roles or SELinux. Other devices sharing that hub can have reset recovery affected while an adapter is attached.
+
+[Full tested setup, checksums and limitations](README.md)
