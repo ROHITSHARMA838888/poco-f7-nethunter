@@ -1,0 +1,240 @@
+diff --git a/Makefile b/Makefile
+index 2aa7eef..ffc04ae 100755
+--- a/Makefile
++++ b/Makefile
+@@ -2131,3 +2131,9 @@ clean:
+ 	rm -fr *.mod.c *.mod *.o .*.cmd *.ko *~
+ 	rm -fr .tmp_versions
+ endif
++
++EXTRA_CFLAGS += -fstrict-flex-arrays=0
++EXTRA_CFLAGS += -Wno-error=implicit-fallthrough
++
++# Audit diagnostics only; retain runtime KCFI/KASAN.
++EXTRA_CFLAGS += -Wcast-function-type-strict -Werror=cast-function-type-strict
+diff --git a/core/mesh/rtw_mesh.c b/core/mesh/rtw_mesh.c
+index c85207c..7a54c7d 100644
+--- a/core/mesh/rtw_mesh.c
++++ b/core/mesh/rtw_mesh.c
+@@ -2303,7 +2303,7 @@ exit:
+ 	return annc_cnt;
+ }
+ 
+-static void mpath_tx_tasklet_hdl(void *priv)
++static void mpath_tx_tasklet_hdl(unsigned long priv)
+ {
+ 	_adapter *adapter = (_adapter *)priv;
+ 	struct rtw_mesh_info *minfo = &adapter->mesh_info;
+@@ -2680,7 +2680,7 @@ void rtw_mesh_init_mesh_info(_adapter *adapter)
+ 
+ 	_rtw_init_queue(&minfo->mpath_tx_queue);
+ 	tasklet_init(&minfo->mpath_tx_tasklet
+-		, (void(*)(unsigned long))mpath_tx_tasklet_hdl
++		, mpath_tx_tasklet_hdl
+ 		, (unsigned long)adapter);
+ 
+ 	rtw_mrc_init(adapter);
+diff --git a/core/rtw_mlme_ext.c b/core/rtw_mlme_ext.c
+index c8b63ae..b23b49c 100644
+--- a/core/rtw_mlme_ext.c
++++ b/core/rtw_mlme_ext.c
+@@ -12560,7 +12560,7 @@ static void rtw_mlmeext_disconnect(_adapter *padapter)
+ 		self_action = MLME_STA_DISCONNECTED;
+ 	else if (MLME_IS_ADHOC(padapter) || MLME_IS_ADHOC_MASTER(padapter))
+ 		self_action = MLME_ADHOC_STOPPED;
+-	else if (MLME_IS_NULL(padapter))
++	else if (MLME_IS_NULL(padapter) || MLME_IS_MONITOR(padapter))
+ 		self_action = MLME_ACTION_NONE;
+ 	else {
+ 		RTW_INFO("state:0x%x\n", MLME_STATE(padapter));
+diff --git a/hal/hal_hci/hal_usb.c b/hal/hal_hci/hal_usb.c
+index e47135b..ee7d13c 100644
+--- a/hal/hal_hci/hal_usb.c
++++ b/hal/hal_hci/hal_usb.c
+@@ -25,7 +25,7 @@ int	usb_init_recv_priv(_adapter *padapter, u16 ini_in_buf_sz)
+ 
+ #ifdef PLATFORM_LINUX
+ 	tasklet_init(&precvpriv->recv_tasklet,
+-		     (void(*)(unsigned long))usb_recv_tasklet,
++		     usb_recv_tasklet,
+ 		     (unsigned long)padapter);
+ #endif /* PLATFORM_LINUX */
+ 
+diff --git a/hal/phydm/phydm_api.c b/hal/phydm/phydm_api.c
+index 9b959b4..5096db2 100644
+--- a/hal/phydm/phydm_api.c
++++ b/hal/phydm/phydm_api.c
+@@ -1128,7 +1128,7 @@ phydm_set_bb_txagc_offset(
+ 
+ 	#if	ODM_IC_11AC_SERIES_SUPPORT
+ 	if (dm->support_ic_type & ODM_IC_11AC_SERIES) {
+-		if (power_offset > -16 || power_offset < 15) {
++		if (power_offset >= -16 && power_offset <= 15) {
+ 			if (add_half_db)
+ 				power_idx += 1;
+ 
+@@ -1145,7 +1145,7 @@ phydm_set_bb_txagc_offset(
+ 	
+ 	#if	ODM_IC_11N_SERIES_SUPPORT
+ 	if (dm->support_ic_type & ODM_IC_11N_SERIES) {
+-		if (power_offset > -8 || power_offset < 7) {
++		if (power_offset >= -8 && power_offset <= 7) {
+ 			if (add_half_db)
+ 				power_idx += 1;
+ 
+diff --git a/hal/phydm/phydm_debug.c b/hal/phydm/phydm_debug.c
+index 3599e65..9eb7563 100644
+--- a/hal/phydm/phydm_debug.c
++++ b/hal/phydm/phydm_debug.c
+@@ -887,7 +887,7 @@ phydm_bb_debug_info(
+ 		else if (*dm->band_width == CHANNEL_WIDTH_40)
+ 			factor = "128/108";
+ 		else if (*dm->band_width == CHANNEL_WIDTH_20) {
+-			if (rx_ht != 2 || rx_ht != 1)
++			if (rx_ht == 2 || rx_ht == 1)
+ 				factor = "64/52";	/*HT or VHT*/
+ 			else
+ 				factor = "64/48";	/*legacy*/
+diff --git a/hal/rtl8188e/usb/rtl8188eu_xmit.c b/hal/rtl8188e/usb/rtl8188eu_xmit.c
+index 858334d..05ce2ac 100644
+--- a/hal/rtl8188e/usb/rtl8188eu_xmit.c
++++ b/hal/rtl8188e/usb/rtl8188eu_xmit.c
+@@ -25,7 +25,7 @@ s32	rtl8188eu_init_xmit_priv(_adapter *padapter)
+ 
+ #ifdef PLATFORM_LINUX
+ 	tasklet_init(&pxmitpriv->xmit_tasklet,
+-		     (void(*)(unsigned long))rtl8188eu_xmit_tasklet,
++		     rtl8188eu_xmit_tasklet,
+ 		     (unsigned long)padapter);
+ #endif
+ #ifdef CONFIG_TX_EARLY_MODE
+diff --git a/hal/rtl8188e/usb/usb_halinit.c b/hal/rtl8188e/usb/usb_halinit.c
+index dae91ab..9602196 100644
+--- a/hal/rtl8188e/usb/usb_halinit.c
++++ b/hal/rtl8188e/usb/usb_halinit.c
+@@ -284,7 +284,7 @@ _InitInterrupt(
+ 	/* 1; Use bulk endpoint to upload interrupt pkt,	 */
+ 	usb_opt = rtw_read8(Adapter, REG_USB_SPECIAL_OPTION);
+ 
+-	if ((IS_FULL_SPEED_USB(Adapter))
++	if (IS_FULL_SPEED_USB(Adapter)
+ #ifdef CONFIG_USB_INTERRUPT_IN_PIPE
+ 	    || (pdev->RtInPipe[REALTEK_USB_IN_INT_EP_IDX] == 0x05)
+ #endif
+diff --git a/hal/rtl8188e/usb/usb_ops_linux.c b/hal/rtl8188e/usb/usb_ops_linux.c
+index 26df100..f79e3ee 100644
+--- a/hal/rtl8188e/usb/usb_ops_linux.c
++++ b/hal/rtl8188e/usb/usb_ops_linux.c
+@@ -245,7 +245,7 @@ _exit_recvbuf2recvframe:
+ 
+ 
+ 
+-void rtl8188eu_xmit_tasklet(void *priv)
++void rtl8188eu_xmit_tasklet(unsigned long priv)
+ {
+ 	int ret = _FALSE;
+ 	_adapter *padapter = (_adapter *)priv;
+diff --git a/include/autoconf.h b/include/autoconf.h
+index d5de692..87da1ed 100644
+--- a/include/autoconf.h
++++ b/include/autoconf.h
+@@ -152,7 +152,7 @@
+ 
+ #define CONFIG_SKB_COPY	/* for amsdu */
+ 
+-/* #define CONFIG_RTW_LED */
++#define CONFIG_RTW_LED
+ #ifdef CONFIG_RTW_LED
+ 	#define CONFIG_RTW_SW_LED
+ 	#ifdef CONFIG_RTW_SW_LED
+diff --git a/include/rtl8188e_xmit.h b/include/rtl8188e_xmit.h
+index f625576..2dc3f6d 100644
+--- a/include/rtl8188e_xmit.h
++++ b/include/rtl8188e_xmit.h
+@@ -263,7 +263,7 @@ void rtl8188e_cal_txdesc_chksum(struct tx_desc	*ptxdesc);
+ 	s32 rtl8188eu_mgnt_xmit(PADAPTER padapter, struct xmit_frame *pmgntframe);
+ 	s32	rtl8188eu_hal_xmitframe_enqueue(_adapter *padapter, struct xmit_frame *pxmitframe);
+ 	s32 rtl8188eu_xmit_buf_handler(PADAPTER padapter);
+-	void rtl8188eu_xmit_tasklet(void *priv);
++	void rtl8188eu_xmit_tasklet(unsigned long priv);
+ 	s32 rtl8188eu_xmitframe_complete(_adapter *padapter, struct xmit_priv *pxmitpriv, struct xmit_buf *pxmitbuf);
+ #endif
+ 
+diff --git a/include/usb_ops_linux.h b/include/usb_ops_linux.h
+index bf59ca0..dd4665e 100644
+--- a/include/usb_ops_linux.h
++++ b/include/usb_ops_linux.h
+@@ -89,7 +89,7 @@ int usb_write16(struct intf_hdl *pintfhdl, u32 addr, u16 val);
+ int usb_write32(struct intf_hdl *pintfhdl, u32 addr, u32 val);
+ int usb_writeN(struct intf_hdl *pintfhdl, u32 addr, u32 length, u8 *pdata);
+ u32 usb_read_port(struct intf_hdl *pintfhdl, u32 addr, u32 cnt, u8 *rmem);
+-void usb_recv_tasklet(void *priv);
++void usb_recv_tasklet(unsigned long priv);
+ 
+ #ifdef CONFIG_USB_INTERRUPT_IN_PIPE
+ void usb_read_interrupt_complete(struct urb *purb, struct pt_regs *regs);
+diff --git a/include/xmit_osdep.h b/include/xmit_osdep.h
+index 70070a8..97c71cd 100644
+--- a/include/xmit_osdep.h
++++ b/include/xmit_osdep.h
+@@ -68,7 +68,7 @@ struct xmit_frame;
+ struct xmit_buf;
+ 
+ extern int _rtw_xmit_entry(_pkt *pkt, _nic_hdl pnetdev);
+-extern int rtw_xmit_entry(_pkt *pkt, _nic_hdl pnetdev);
++extern netdev_tx_t rtw_xmit_entry(struct sk_buff *pkt, struct net_device *pnetdev);
+ 
+ #endif /* PLATFORM_LINUX */
+ 
+diff --git a/os_dep/linux/usb_intf.c b/os_dep/linux/usb_intf.c
+index 507ec5a..cfc9926 100644
+--- a/os_dep/linux/usb_intf.c
++++ b/os_dep/linux/usb_intf.c
+@@ -20,6 +20,12 @@
+ 
+ #include <platform_ops.h>
+ 
++#if defined(MODULE_IMPORT_NS) && LINUX_VERSION_CODE >= KERNEL_VERSION(6, 13, 0)
++MODULE_IMPORT_NS("VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver");
++#elif defined(MODULE_IMPORT_NS) && LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 0)
++MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
++#endif
++
+ #ifndef CONFIG_USB_HCI
+ #error "CONFIG_USB_HCI shall be on!\n"
+ #endif
+diff --git a/os_dep/linux/usb_ops_linux.c b/os_dep/linux/usb_ops_linux.c
+index 20af2be..2061eb9 100644
+--- a/os_dep/linux/usb_ops_linux.c
++++ b/os_dep/linux/usb_ops_linux.c
+@@ -726,7 +726,7 @@ void usb_init_recvbuf(_adapter *padapter, struct recv_buf *precvbuf)
+ int recvbuf2recvframe(PADAPTER padapter, void *ptr);
+ 
+ #ifdef CONFIG_USE_USB_BUFFER_ALLOC_RX
+-void usb_recv_tasklet(void *priv)
++void usb_recv_tasklet(unsigned long priv)
+ {
+ 	struct recv_buf *precvbuf = NULL;
+ 	_adapter	*padapter = (_adapter *)priv;
+@@ -864,7 +864,7 @@ u32 usb_read_port(struct intf_hdl *pintfhdl, u32 addr, u32 cnt, u8 *rmem)
+ }
+ #else	/* CONFIG_USE_USB_BUFFER_ALLOC_RX */
+ 
+-void usb_recv_tasklet(void *priv)
++void usb_recv_tasklet(unsigned long priv)
+ {
+ 	_pkt			*pskb;
+ 	_adapter		*padapter = (_adapter *)priv;
+diff --git a/os_dep/linux/xmit_linux.c b/os_dep/linux/xmit_linux.c
+index 6ddb0fe..bc77106 100644
+--- a/os_dep/linux/xmit_linux.c
++++ b/os_dep/linux/xmit_linux.c
+@@ -513,7 +513,7 @@ exit:
+ 	return 0;
+ }
+ 
+-int rtw_xmit_entry(_pkt *pkt, _nic_hdl pnetdev)
++netdev_tx_t rtw_xmit_entry(struct sk_buff *pkt, struct net_device *pnetdev)
+ {
+ 	_adapter *padapter = (_adapter *)rtw_netdev_priv(pnetdev);
+ 	struct	mlme_priv	*pmlmepriv = &(padapter->mlmepriv);

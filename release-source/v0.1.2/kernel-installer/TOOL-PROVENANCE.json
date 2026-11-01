@@ -1,0 +1,20 @@
+{
+  "url": "https://github.com/topjohnwu/Magisk/releases/tag/v31.1",
+  "apk_sha256": "89cefac0a318afa39fb3880c45c87b036c05bc1ebf02a7a715b7f8d7c26ac6e7",
+  "tools": {
+    "busybox": "4d60ab3f5a59ebb2ca863f2f514e6924401b581e9b64f602665c008177626651",
+    "magiskboot": "97e9ec75731103d31c9e1effca7a50c6444309ce8f78c2ec27e9fe721da4bb54",
+    "magiskpolicy": "83725b7c452c1d441acd851daaf1dffd15ef06d7b8dabac8a1215801d2b40796"
+  },
+  "architecture": "AArch64",
+  "script_changes": [
+    "export BOOTMODE to installer child shell",
+    "kernel-only split_boot unpack -n retains outgoing compression without decoding unused old kernel"
+  ],
+  "omitted_unused_arm32_tools": [
+    "fec",
+    "httools_static",
+    "lptools_static",
+    "snapshotupdater_static"
+  ]
+}

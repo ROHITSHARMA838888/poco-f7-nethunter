@@ -1,0 +1,6 @@
+id=onyx_verified_wifi
+name=Onyx verified Archer and WN722N v2-v3 drivers
+version=v0.1.2-dual-wifi-fix
+versionCode=4
+author=Rohit Sharma (ROHITSHARMA838888)
+description=Archer and WN722N callback fixes, WN monitor-state fix and LED support; each passed one owned-hotspot probe test (29/30 replies), no reboot. Matching 88XXau and 8188eu autoload plus unplug-restoring guard for the ROM USB reset loop. Exact Archer/WN722N v2-v3 IDs only. No ROM overlay or HAL stop. WN722N v1 excluded.

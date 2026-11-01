@@ -1,0 +1,20 @@
+diff --git a/drivers/Kconfig b/drivers/Kconfig
+index 5eecbf67b..2438471cf 100644
+--- a/drivers/Kconfig
++++ b/drivers/Kconfig
+@@ -244,4 +244,5 @@ source "drivers/hte/Kconfig"
+ source "drivers/cdx/Kconfig"
+ 
+ source "drivers/xiaomi/Kconfig"
++source "drivers/kernelsu/Kconfig"
+ endmenu
+diff --git a/drivers/Makefile b/drivers/Makefile
+index e085b5d74..c46a02de2 100644
+--- a/drivers/Makefile
++++ b/drivers/Makefile
+@@ -200,3 +200,5 @@ obj-$(CONFIG_CDX_BUS)		+= cdx/
+ 
+ obj-$(CONFIG_S390)		+= s390/
+ obj-y					+= xiaomi/
++
++obj-$(CONFIG_KSU) += kernelsu/

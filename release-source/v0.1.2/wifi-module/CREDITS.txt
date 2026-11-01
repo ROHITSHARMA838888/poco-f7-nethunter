@@ -1,0 +1,44 @@
+Rohit Sharma — Poco F7 / onyx NetHunter integration and device testing
+GitHub: ROHITSHARMA838888
+
+Thank you to the original authors and contributors:
+
+Kernel source: xiaomi-onyx-playground/android_kernel_xiaomi_sm8735
+https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735
+Pinned source: 7750565ada3d57e195798519b005d2b038e888c1
+Thanks to the Xiaomi onyx kernel maintainers and all Linux / Android / Qualcomm
+kernel contributors for making the source available. This is a downstream build;
+Rohit Sharma's branding does not replace the original authorship or licences.
+
+KernelSU Next: KernelSU-Next/KernelSU-Next
+https://github.com/KernelSU-Next/KernelSU-Next
+Pinned source: b427a3f9c2421a443f961007bfce66b25486643f
+
+Archer driver: aircrack-ng/rtl8812au
+https://github.com/aircrack-ng/rtl8812au
+Pinned source: 734485506a30d6237c2deaad666a19f8ca5379f2
+WN722N v2/v3 driver: aircrack-ng/rtl8188eus
+https://github.com/aircrack-ng/rtl8188eus
+Pinned source: af3bf004458f76b7aec33e9ba552cd382ed1f5c3
+Thanks to Realtek and the driver maintainers and contributors.
+
+Recovery installer: osm0sis / AnyKernel3
+https://github.com/osm0sis/AnyKernel3
+Pinned source: 41f04bdb4ee30a44e429c2c1131d5e8bb32b15f1
+ARM64 installer utilities: topjohnwu / Magisk v31.1
+https://github.com/topjohnwu/Magisk/releases/tag/v31.1
+
+Boot animation and wallpaper: Kali Linux / Kali NetHunter contributors
+https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-installer
+Pinned artwork source: aa1dca61435cc8a7e9f4053234c731855329e69b
+Original artwork ownership and licences remain with their authors.
+This community build is not an official Kali or upstream project release.
+
+Keep these acknowledgements, source links and all accompanying licences when
+redistributing. Full matching source and build modifications must accompany the
+release as required by the applicable licences; credits alone are not sufficient.
+
+Wi-Fi v0.1.2: callback compatibility fixes for pinned aircrack-ng rtl8812au and rtl8188eus; WN monitor-state handling and software LED support.
+Build evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter-konoha/actions/runs/41297489306
+
+WN build evidence: https://github.com/ROHITSHARMA838888/poco-f7-nethunter-konoha/actions/runs/41316130882
