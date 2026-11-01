@@ -103,7 +103,7 @@ Final bounded tests showed no reboot or new adapter-test kernel warning. That is
 The kernel filename retains `test` because the release uses the exact device-tested binary. It is not a claim of broad stable-device support. GitHub's automatic **Source code** archives are source downloads, **not flashable ZIPs**.
 
 <details>
-<summary><strong>Expected SHA-256 hashes and how to verify</strong></summary>
+<summary><strong>Optional: download verification (SHA-256)</strong></summary>
 
 ```text
 6726a91f195ba295c63499d0bd09f90fa5093701d56720630e6e27a091a859d6  Onyx-NetHunter-v0.1.2-test.zip
@@ -130,7 +130,7 @@ If a hash does not match, **stop and download again**. Do not flash a file with 
 ## Installation
 
 > [!WARNING]
-> Only for the **tested POCO F7 / onyx + Infinity-X 4.1 Android 17 build** listed above. Keep the bootloader unlocked, a working recovery and **your own current Boot backup**. Verify both ZIP checksums and remove all adapters/OTG before starting.
+> Only for the **tested POCO F7 / onyx + Infinity-X 4.1 Android 17 build** listed above. Keep the bootloader unlocked, a working recovery and **your own current Boot backup**. Remove all adapters/OTG before starting.
 
 ### Part 1 — Flash the kernel in OrangeFox
 
