@@ -129,50 +129,34 @@ If a hash does not match, **stop and download again**. Do not flash a file with 
 
 ## Installation
 
-### 1. Prepare before flashing
+> [!WARNING]
+> Only for the **tested POCO F7 / onyx + Infinity-X 4.1 Android 17 build** listed above. Keep the bootloader unlocked, a working recovery and **your own current Boot backup**. Verify both ZIP checksums and remove all adapters/OTG before starting.
 
-1. Confirm the **device, exact ROM build, security patch and boot layout** match the supported setup above.
-2. Ensure the bootloader is already **unlocked** and recovery access works. This ZIP does not unlock it.
-3. Back up important data and the **currently working Boot partition for the active slot**. A stock ROM boot image is not a backup of a modified current boot.
-4. Save your rollback files somewhere accessible if Android cannot boot. Keep a previous known-good module ZIP if updating.
-5. Download and verify both release ZIPs. Disconnect **all external Wi-Fi adapters / OTG**.
+### Part 1 — Flash the kernel in OrangeFox
 
-### 2. Flash the kernel in OrangeFox
+1. Copy **`Onyx-NetHunter-v0.1.2-test.zip`** to your phone.
+2. Reboot into **OrangeFox recovery**.
+3. Open **Backup → Boot** and save a backup of the currently active slot.
+4. Open **Install**, select the **kernel ZIP**, and swipe to flash.
+5. When it finishes successfully, tap **Reboot System** and unlock the phone.
 
-1. Boot into the known-working **OrangeFox recovery**.
-2. Back up **Boot** for the currently active slot if not already done.
-3. Choose **Install → `Onyx-NetHunter-v0.1.2-test.zip`**.
-4. Swipe to flash and read the result.
-5. If successful, choose **Reboot System** and unlock Android.
+### Part 2 — Install the Wi-Fi module in Android
+
+1. Open **KernelSU Next Manager** and confirm root works.
+2. Open **Modules → Install**.
+3. Select **`Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip`**.
+4. After a successful install, **reboot with adapters unplugged**.
+5. Unlock the phone and wait about **30 seconds**, then connect **one adapter at a time**.
 
 > [!IMPORTANT]
-> **Do not wipe or format data. Do not flash this kernel through KernelSU Manager.** The installer validates the device/ROM, unlocked state and boot header before replacing the active-slot kernel. It does not flash `vbmeta`, `init_boot` or `vendor_boot`.
-
-The package also installs the Kali boot animation, wallpaper assets and a one-shot wallpaper hook. Wallpaper application waits for Android/owner unlock. It is not an Android app bundle or a separate theme module.
+> **Kernel ZIP → OrangeFox. Wi-Fi ZIP → KernelSU Next.** Do not swap them. **No data wipe or format is needed.** Do not flash `vbmeta`, `init_boot` or `vendor_boot`, switch slots blindly or bypass installer checks.
 
 > [!CAUTION]
-> If an installer check fails, **stop and keep the recovery log**. Do not remove checks or repeatedly flash. A theme error can occur **after the kernel has been written**; an error message does not always mean nothing changed. See [the detailed install and rollback guide](INSTALL.md).
+> If an error appears, **stop and save the log**. A theme error can occur after the kernel was written. If an adapter causes reboot, unplug OTG and stop testing. Reboot temporarily disconnects your hotspot.
 
-### 3. Install the Wi-Fi module in Android
+The kernel installer also includes the Kali boot animation and wallpaper setup. Already using this exact working kernel and module? **No need to flash again.**
 
-1. Open **KernelSU Next Manager** and verify root is working.
-2. Open **Modules → Install** and select `Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip`.
-3. Wait for a successful install. If an error appears, stop and retain its log.
-4. Reboot with **both adapters unplugged**. Reboot temporarily interrupts hotspot/internet.
-5. Unlock Android, allow boot services to finish, and confirm module version **`v0.1.2-dual-wifi-fix`**.
-6. Connect **one external adapter at a time** through OTG.
-
-**Do not flash the Wi-Fi module in recovery, manually run its boot service, force-load mismatched `.ko` files or enable a second competing driver loader.** The module requires the exact running kernel release shown above.
-
-### 4. First-use checks
-
-- Confirm Android boots normally and KernelSU root works.
-- Confirm the installed module is enabled and version matches.
-- Attach one adapter and check detection first; LED state alone is insufficient.
-- For radio testing, use only your own test network or a network you are authorized to test.
-- If attaching an adapter causes repeated resets or reboot, **remove OTG immediately**, stop testing and save the logs before making another change.
-
-Already running this exact kernel and module successfully? **You do not need to reflash merely because the release is public.**
+[Detailed compatibility and rollback information →](INSTALL.md)
 
 ## Rollback and recovery
 
