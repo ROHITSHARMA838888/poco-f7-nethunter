@@ -23,4 +23,16 @@ change('include/xmit_osdep.h', 'extern int _rtw_xmit_entry(_pkt *pkt, _nic_hdl p
        'extern int _rtw_xmit_entry(_pkt *pkt, _nic_hdl pnetdev);\nextern netdev_tx_t rtw_xmit_entry(struct sk_buff *pkt, struct net_device *pnetdev);')
 change('os_dep/linux/xmit_linux.c', '\nint rtw_xmit_entry(_pkt *pkt, _nic_hdl pnetdev)',
        '\nnetdev_tx_t rtw_xmit_entry(struct sk_buff *pkt, struct net_device *pnetdev)')
-print('WN722N_RX_TX_MESH_AND_NETDEV_CALLBACK_TYPES_FIXED; KCFI retained')
+# Monitor is a valid interface mode, but has no associated station/AP to notify.
+# Retain all hardware/disconnect cleanup and warnings for genuinely unknown states.
+path = root / 'core/rtw_mlme_ext.c'
+text = path.read_text(encoding='utf-8')
+start = text.index('static void rtw_mlmeext_disconnect(_adapter *padapter)')
+end = text.index('\n}', start) + 2
+function = text[start:end]
+before = 'else if (MLME_IS_NULL(padapter))\n\t\tself_action = MLME_ACTION_NONE;'
+assert function.count(before) == 1
+function = function.replace(before, 'else if (MLME_IS_NULL(padapter) || MLME_IS_MONITOR(padapter))\n\t\tself_action = MLME_ACTION_NONE;')
+path.write_text(text[:start] + function + text[end:], encoding='utf-8', newline='\n')
+change('include/autoconf.h', '/* #define CONFIG_RTW_LED */', '#define CONFIG_RTW_LED')
+print('WN722N_CALLBACK_TYPES_MONITOR_DISCONNECT_AND_LED_FIXED; KCFI retained')

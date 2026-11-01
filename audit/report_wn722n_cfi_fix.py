@@ -39,10 +39,14 @@ for line in text.splitlines():
 assert not diagnostics, 'Callback cast diagnostics remain'
 assert 'rtl8188eu_xmit_tasklet(unsigned long priv)' in (source/'hal/rtl8188e/usb/usb_ops_linux.c').read_text()
 assert 'mpath_tx_tasklet_hdl(unsigned long priv)' in (source/'core/mesh/rtw_mesh.c').read_text()
+assert 'MLME_IS_NULL(padapter) || MLME_IS_MONITOR(padapter)' in (source/'core/rtw_mlme_ext.c').read_text()
+assert '\n#define CONFIG_RTW_LED\n' in (source/'include/autoconf.h').read_text()
 report={
     'scope':'Off-device compiler/ABI audit only; NOT a reboot fix or runtime qualification',
     'runtime_protections_retained':['CFI/KCFI','KASAN_HW_TAGS','original ROM config'],
     'wn722n_callback_type_fixes_applied':True,
+    'valid_monitor_disconnect_state_handled':True,
+    'software_led_support_enabled':True,
     'cast_diagnostic_count':len(diagnostics),
     'cast_diagnostics':diagnostics,
     'module_import_crcs_checked':len(imports),

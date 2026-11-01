@@ -1,4 +1,4 @@
-name: Build WN722N callback type fix with KCFI retained
+name: Build WN722N callback and monitor-state fix with LED support
 on:
   push:
     branches: [codex/rom-symbol-baseline]
@@ -120,7 +120,7 @@ jobs:
           mkdir wn722n-candidate
           cp external/rtl8188eus/8188eu.ko wn722n-candidate/
           (cd wn722n-candidate && sha256sum 8188eu.ko > SHA256SUMS)
-          printf '%s\n' 'CANDIDATE ONLY: RX/TX/mesh/netdev callback type repair. KCFI retained.' \
+          printf '%s\n' 'CANDIDATE ONLY: callback type + valid monitor disconnect state + software LED support. KCFI retained.' \
             'No phone load or reboot/injection qualification performed.' \
             'Not a flashable kernel ZIP. Preserve the installed driver and boot backups.' \
             > wn722n-candidate/README.txt
