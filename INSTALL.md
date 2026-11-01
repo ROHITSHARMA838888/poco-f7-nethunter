@@ -2,7 +2,7 @@
 
 > **Check first:** Only POCO F7 / onyx running the tested Infinity-X 4.1 Android 17 build: incremental `1792766195`, SDK `37`, patch `2026-10-01`. Other ROMs/updates are not verified. An unlocked bootloader, working recovery and your own current Boot backup are required. Do not bypass installer checks.
 
-Download both ZIPs from [the release](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2), verify their hashes using `SHA256SUMS.txt`, and unplug all external adapters/OTG.
+Download both ZIPs from [the release](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2) and unplug all external adapters/OTG.
 
 ## 1. Kernel ZIP → OrangeFox recovery
 
@@ -40,3 +40,10 @@ Download both ZIPs from [the release](https://github.com/ROHITSHARMA838888/poco-
 The Wi-Fi module includes a targeted workaround for the ROM USB HAL resetting the adapter's parent hub. For the supported USB IDs, it temporarily removes write bits from the hub's `authorized` inode and restores the original mode on unplug/exit. It leaves the HAL running and does not change USB authorization values, roles or SELinux. Other devices sharing that hub can have reset recovery affected while an adapter is attached.
 
 [Full tested setup, checksums and limitations](README.md)
+
+<details>
+<summary>Optional: verify your downloads</summary>
+
+`SHA256SUMS.txt` is available with the release if you want to check download integrity. See the optional verification section in the [README](README.md).
+
+</details>
