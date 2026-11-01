@@ -3,7 +3,11 @@
 This audit never loads a module, disables CFI, or modifies CRCs.
 """
 from pathlib import Path
-import hashlib,json,re
+import argparse,hashlib,json,re
+
+parser=argparse.ArgumentParser()
+parser.add_argument('--require-clean-callbacks',action='store_true')
+args=parser.parse_args()
 
 out=Path('archer-evidence')
 source=Path('external/rtl8812au')
@@ -32,6 +36,14 @@ diagnostics=[]
 for line in text.splitlines():
     if re.search(r'warning:.*\[-W(?:cast-function-type|incompatible-function-pointer-types)',line):
         diagnostics.append(line)
+if args.require_clean_callbacks:
+    for family in ('8812','8814'):
+        name=f'rtl{family}au_xmit_tasklet'
+        for path in (source/f'include/rtl{family}a_xmit.h',source/f'hal/rtl{family}a/usb/usb_ops_linux.c'):
+            assert f'{name}(unsigned long priv)' in path.read_text()
+        registration=(source/f'hal/rtl{family}a/usb/rtl{family}au_xmit.c').read_text()
+        assert f'(void(*)(unsigned long)){name}' not in registration
+    assert not diagnostics, 'Callback cast diagnostics remain; do not install'
 report={
     'scope':'Off-device compiler/ABI audit only; NOT a reboot fix or runtime qualification',
     'runtime_protections_retained':['CFI/KCFI','KASAN_HW_TAGS','original ROM config'],
@@ -40,7 +52,10 @@ report={
     'cast_diagnostics':diagnostics,
     'module_import_crcs_checked':len(imports),
     'module_sha256':hashlib.sha256((source/'88XXau.ko').read_bytes()).hexdigest(),
-    'module_not_uploaded_for_install':True,
+    'module_not_uploaded_for_install':not args.require_clean_callbacks,
+    'module_distribution_scope':'review_candidate_only' if args.require_clean_callbacks else 'audit_evidence_only',
+    'phone_install_performed':False,
+    'tx_tasklet_fix_required':args.require_clean_callbacks,
     'limits':['Compiler cast warnings are findings to review, not proof of the phone reboot cause',
               'Zero warnings does not rule out use-after-free, firmware/power faults or other driver bugs',
               'No kernel Image rebuild, phone load, injection test or public Release performed'],
