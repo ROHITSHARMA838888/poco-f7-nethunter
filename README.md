@@ -21,6 +21,14 @@ Current base is [xiaomi-onyx-playground/android_kernel_xiaomi_sm8735](https://gi
 
 No reboot or new adapter-test kernel warning was observed in the final bounded Wi-Fi tests. These results do not establish long-term stability, every frame type, every hardware revision or cross-ROM compatibility. **Deauthentication/MDK operation is untested. Internal Wi-Fi capture/injection is untested.** Kali apps/chroot are not bundled in the kernel ZIP. WN722N v1 is excluded from this Wi-Fi module.
 
+## Testing photos
+
+User-provided photos show both adapters detected in Kali, monitor-mode status and the physical OTG setups. [View the annotated test gallery](docs/testing/README.md).
+
+<img src="docs/testing/images/monitor-mode-adapters.jpg" alt="External adapter monitor-mode status" width="420">
+
+Photos support the stated detection/setup observations; injection results were verified separately. They do not establish deauthentication or compatibility with other ROMs.
+
 ## Downloads and installation
 
 Use [GitHub Releases](../../releases) and verify `SHA256SUMS.txt`. There are two different packages:
