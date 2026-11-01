@@ -1,10 +1,10 @@
-# Onyx NetHunter — POCO F7 (Unofficial)
+# Onyx NetHunter â€” POCO F7 (Unofficial)
 
 By **Rohit Sharma / [@hcclubb](https://t.me/hcclubb)**. An independent community kernel build, not an official Kali release.
 
 ## Supported setup
 
-**POCO F7 / onyx — Infinity-X 4.1, Android 17**, ROM incremental `1792766195`, SDK37, security patch `2026-10-01`. Recovery installer enforces these identifiers. Other ROMs, devices and ROM updates are **not verified**. An unlocked bootloader and a known-good boot backup/recovery path are required.
+**POCO F7 / onyx â€” Infinity-X 4.1, Android 17**, ROM incremental `1792766195`, SDK37, security patch `2026-10-01`. Recovery installer enforces these identifiers. Other ROMs, devices and ROM updates are **not verified**. An unlocked bootloader and a known-good boot backup/recovery path are required.
 
 Current base is [xiaomi-onyx-playground/android_kernel_xiaomi_sm8735](https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735/tree/7750565ada3d57e195798519b005d2b038e888c1), **Linux6.6.142**, runtime release `6.6.142-4k-g7750565ada3d-dirty`. The repository is named `poco-f7-nethunter`; the released kernel is **not Konoha-based**.
 
@@ -25,7 +25,7 @@ No reboot or new adapter-test kernel warning was observed in the final bounded W
 
 Use [GitHub Releases](../../releases) and verify `SHA256SUMS.txt`. There are two different packages:
 
-- `Onyx-NetHunter-v0.1.2-test-Rohit-Sharma.zip`: OrangeFox recovery kernel installer. The historical `test` filename is retained to preserve the exact tested bytes.
+- `Onyx-NetHunter-v0.1.2-test.zip`: OrangeFox recovery kernel installer. The historical `test` filename is retained to preserve the exact tested bytes.
 - `Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip`: service-only KernelSU module for external adapters, not a recovery-flashable ZIP.
 
 Read [INSTALL.md](INSTALL.md) before flashing. **Do not flash old6.6.143 Konoha CI artifacts or raw Image/.ko outputs.** Old Actions runs are development evidence, not release downloads.
@@ -41,6 +41,6 @@ See [SOURCE.md](SOURCE.md), [CREDITS.txt](CREDITS.txt), the exact source pins, m
 
 ## Community
 
-[Updates](https://t.me/POCO_F7_NETHUNTER) · [Discussion](https://t.me/poco_f7_discussion)
+[Updates](https://t.me/POCO_F7_NETHUNTER) Â· [Discussion](https://t.me/poco_f7_discussion)
 
 For bugs include ROM incremental/security patch, kernel and module versions, adapter model/USBID and steps. Remove personal data from logs. Keep upstream acknowledgements when redistributing.
