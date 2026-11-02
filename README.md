@@ -104,31 +104,6 @@ Each button downloads only the file named in its row. **Download both ZIPs.**
 
 The kernel filename retains `test` because the release uses the exact device-tested binary. It is not a claim of broad stable-device support. GitHub's automatic **Source code** archives are source downloads, **not flashable ZIPs**.
 
-<details>
-<summary><strong>Optional: download verification (SHA-256)</strong></summary>
-
-```text
-6726a91f195ba295c63499d0bd09f90fa5093701d56720630e6e27a091a859d6  Onyx-NetHunter-v0.1.2-test.zip
-ccc4fc8b2ad0c323172911247620447e58de0879f39e8e33287416146aede083  Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip
-```
-
-Windows PowerShell, in the download directory:
-
-```powershell
-Get-FileHash .\Onyx-NetHunter-v0.1.2-test.zip -Algorithm SHA256
-Get-FileHash .\Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip -Algorithm SHA256
-```
-
-Linux, with both ZIPs and the checksum file in the same directory:
-
-```bash
-sha256sum -c SHA256SUMS.txt
-```
-
-If a hash does not match, **stop and download again**. Do not flash a file with a mismatched checksum.
-
-</details>
-
 ## Installation
 
 > [!WARNING]
