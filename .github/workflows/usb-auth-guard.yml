@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Compile C helper with preinstalled official Android NDK
         shell: bash
         run: |
@@ -35,12 +37,12 @@ jobs:
           "$tool/llvm-strip" --strip-debug guard-files/usb-auth-guard
           (cd guard-files && sha256sum usb-auth-guard > SHA256SUMS)
           printf '%s\n' 'Test-only, exact known USB IDs. No USB authorization value or ROM writes; temporary inode write-permission restriction with independent crash restoration. Requires root. Not installed on boot.' > guard-files/README.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-usb-auth-guard-test
           path: guard-files/
           if-no-files-found: error
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: onyx-usb-auth-guard-evidence

@@ -18,9 +18,11 @@ jobs:
     env:
       ROM_PROBE_TOOLCHAIN_SCOPE: Official apt LLVM 22 root/adapter candidate, not exact ROM Android Clang r596125
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Download already-built root candidate metadata
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: rom-root-adapter-symbol-evidence
           run-id: 40863319425
@@ -102,14 +104,14 @@ jobs:
           (cd mac-files && sha256sum mac80211.ko > SHA256SUMS)
           printf '%s\n' 'Matching companion mac80211 for already-built ath9k_htc. Not an installer; validate imported CRCs and loaded-module use count before runtime replacement. No ROM partition writes authorized by this artifact.' > mac-files/README.txt
       - name: Retain companion binary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-matching-mac80211
           path: mac-files/
           if-no-files-found: error
       - name: Retain build evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-mac80211-evidence
           path: mac-evidence/

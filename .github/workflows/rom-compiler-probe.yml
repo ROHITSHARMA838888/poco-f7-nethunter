@@ -15,7 +15,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Install official LLVM 22 and BTF tools
         shell: bash
         run: |
@@ -65,7 +67,7 @@ jobs:
           python3 compatibility/collect_partial_symbols.py
       - name: Retain symbol metadata and logs only
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: rom-llvm22-partial-symbol-evidence
           path: probe-evidence/

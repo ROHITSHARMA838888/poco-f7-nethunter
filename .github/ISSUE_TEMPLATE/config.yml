@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Private security report
+    url: https://github.com/ROHITSHARMA838888/poco-f7-nethunter/security/advisories/new
+    about: Report vulnerabilities privately; do not disclose secrets in public issues.
+  - name: Community discussion
+    url: https://t.me/poco_f7_discussion
+    about: Installation and general discussion.

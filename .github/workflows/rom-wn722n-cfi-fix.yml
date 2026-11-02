@@ -18,9 +18,11 @@ jobs:
     env:
       ROM_PROBE_TOOLCHAIN_SCOPE: Official apt LLVM 22 root/adapter candidate, not exact ROM Android Clang r596125
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Download already-built root candidate metadata
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: rom-root-adapter-symbol-evidence
           run-id: 41207879867
@@ -125,14 +127,14 @@ jobs:
             'Not a flashable kernel ZIP. Preserve the installed driver and boot backups.' \
             > wn722n-candidate/README.txt
       - name: Retain review candidate
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-wn722n-tx-tasklet-fix-CANDIDATE-NOT-INSTALLED
           path: wn722n-candidate/
           if-no-files-found: error
       - name: Retain compiler and ABI audit evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-wn722n-tx-tasklet-fix-evidence
           path: wn722n-evidence/
