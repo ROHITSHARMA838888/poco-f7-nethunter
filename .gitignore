@@ -1,0 +1,19 @@
+# Private/runtime material must never enter the public source repository.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*.img
+*.log
+*.private.*
+*pmsg*
+*tombstone*
+/installer-validation/
+/root-setup/
+/rom-inspection/
+/build-evidence/
+/repository-audit/
+/release-prep/

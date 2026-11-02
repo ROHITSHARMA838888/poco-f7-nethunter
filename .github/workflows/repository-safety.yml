@@ -1,0 +1,23 @@
+name: Repository safety
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: repo-safety-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  safety:
+    name: Repository safety
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Check syntax and workflow security
+        run: python3 .github/scripts/check_repository.py

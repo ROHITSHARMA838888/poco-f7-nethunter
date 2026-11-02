@@ -20,7 +20,9 @@ jobs:
       KBUILD_BUILD_VERSION: "1"
       ROM_PROBE_TOOLCHAIN_SCOPE: Official apt LLVM 22 root/adapter candidate, not exact ROM Android Clang r596125
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Install official LLVM 22 and matching BTF tools
         shell: bash
         run: |
@@ -133,7 +135,7 @@ jobs:
           printf '%s\n' 'COMPILED KERNEL AND ATHEROS MODULES: NOT A FLASHABLE INSTALLER' \
             'External Realtek drivers are separate. Phone boot/root/HID/Wi-Fi remain untested.' > kernel-test-files/README.txt
       - name: Upload kernel before external driver compilation
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-root-kernel-files-NOT-FLASHABLE
           path: kernel-test-files/
@@ -143,14 +145,14 @@ jobs:
         run: bash compatibility/build_rom_drivers.sh
       - name: Retain individually verified external drivers
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-individually-verified-driver-files
           path: verified-driver-files/
           if-no-files-found: ignore
       - name: Retain baseline ABI evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: rom-root-adapter-symbol-evidence
           path: probe-evidence/
@@ -178,7 +180,7 @@ jobs:
             'WN722N hardware revision is unconfirmed; ath9k_htc also needs separate firmware.' \
             > candidate-test-files/README.txt
       - name: Publish compiled experimental test files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-rom-root-adapter-test-files-NOT-FLASHABLE
           path: candidate-test-files/

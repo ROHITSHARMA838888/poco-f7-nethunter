@@ -20,7 +20,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 150
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - name: Install build tools
@@ -37,7 +39,7 @@ jobs:
           test "$(git -C kernel rev-parse HEAD)" = "$KERNEL_COMMIT"
       - name: Restore kernel compilation output
         id: kernel-cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: kernel/out
           key: onyx-clang18-v1-${{ hashFiles('source.lock', 'config/**', 'scripts/prepare-source.py') }}
@@ -88,20 +90,20 @@ jobs:
           cp out/System.map ../diagnostics/
       - name: Upload build diagnostics
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-baseline-diagnostics
           path: diagnostics/
           if-no-files-found: warn
       - name: Upload experimental kernel Image
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-baseline-image-unvalidated
           path: kernel/out/arch/arm64/boot/Image
           if-no-files-found: error
       - name: Save successful kernel output before testing drivers
         if: steps.kernel-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: kernel/out
           key: ${{ steps.kernel-cache.outputs.cache-primary-key }}
@@ -110,7 +112,7 @@ jobs:
         run: bash scripts/compile-drivers.sh
       - name: Upload external driver diagnostics
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: onyx-external-wifi-diagnostics
           path: |
