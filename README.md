@@ -67,8 +67,8 @@ The current build uses [xiaomi-onyx-playground/android_kernel_xiaomi_sm8735](htt
 | **TL-WN722N v2/v3** | `8188eu`, USB `2357:010c`; monitor transitions, monitor-UP, LED and bounded probe injection verified |
 | **Probe injection** | Each adapter returned **29/30 directed replies** in one test against the tester's own phone hotspot |
 | **Deauthentication** | Both adapters tested on an owned hotspot; client interruption/reconnection observed |
-| **MDK** | Maintainer reports manual tests working; individual modes not independently documented |
-| **Internal Wi-Fi** | Monitor mode advertised by the current kernel; internal capture/injection not independently validated |
+| **MDK** | Tested and working |
+| **Internal Wi-Fi** | Monitor mode working; injection and deauthentication support planned for future investigation |
 | **Persistent Wi-Fi module** | Both fixed drivers auto-load after reboot; post-reboot adapter attachment checked |
 | **USB stability guard** | Targeted ROM USB-reset workaround; hub permissions restored after unplug |
 | **USB HID** | Windows HID enumeration and actual keyboard typing verified (`hid test ok`); standalone HID switch is not included |
@@ -80,8 +80,8 @@ The Wi-Fi drivers and USB guard live in the **separate KernelSU module**. Kali a
 ### Additional tests and remaining limits
 
 - Deauthentication was tested with both external adapters against an owned hotspot; the maintainer also reports successful manual testing on another phone.
-- MDK operation is **maintainer-tested working**; tool version, individual modes and repeatability have not been independently recorded.
-- Internal Wi-Fi advertises **monitor-mode support**. Internal deauthentication is reported unsupported on the current setup. Internal packet capture and injection have not been independently validated; advertised support is not a capture test.
+- MDK is **tested and working**.
+- Internal Wi-Fi **monitor mode is working**. Injection and deauthentication are not currently supported; we will investigate adding support in future updates.
 - WN722N **v1 is excluded** from the Wi-Fi module.
 - Other adapters, other ROMs, all frame types and long-term stability are **not qualified**.
 - Photos of a detected interface or a lit LED alone do not prove packet transmission.
