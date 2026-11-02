@@ -92,19 +92,15 @@ See [CHANGELOG.md](CHANGELOG.md) for the latest validation update.
 
 ## Downloads
 
-<div align="center">
+Each button downloads only the file named in its row. **Download both ZIPs.**
 
-[![Kernel ZIP](https://img.shields.io/badge/ORANGEFOX-KERNEL_ZIP-22c55e?style=for-the-badge&logo=android&logoColor=white)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-v0.1.2-test.zip)
-[![Wi-Fi module](https://img.shields.io/badge/KERNELSU-WI--FI_MODULE-3b82f6?style=for-the-badge&logo=android&logoColor=white)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip)
-[![Checksums](https://img.shields.io/badge/VERIFY-SHA256SUMS-64748b?style=for-the-badge&logo=files&logoColor=white)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/SHA256SUMS.txt)
-
-</div>
-
-| File | Install with | Purpose |
+| Download | Exact file | Install with / purpose |
 | :--- | :--- | :--- |
-| `Onyx-NetHunter-v0.1.2-test.zip` | **OrangeFox recovery → Install** | KernelSU Next kernel + theme installer |
-| `Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip` | **KernelSU Next Manager → Modules** | External adapter drivers + USB guard |
-| `SHA256SUMS.txt` | Hash verification tool | Check that downloaded bytes match |
+| [![Kernel ZIP](https://img.shields.io/badge/ORANGEFOX-KERNEL_ZIP-22c55e?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-v0.1.2-test.zip) | [Onyx-NetHunter-v0.1.2-test.zip](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-v0.1.2-test.zip) | **OrangeFox recovery → Install** — KernelSU Next kernel + theme installer |
+| [![Wi-Fi module](https://img.shields.io/badge/KERNELSU-WI--FI_MODULE-3b82f6?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip) | [Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip) | **KernelSU Next Manager → Modules** — External adapter drivers + USB guard |
+| [![Checksums](https://img.shields.io/badge/VERIFY-SHA256SUMS-64748b?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/SHA256SUMS.txt) | [SHA256SUMS.txt](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/SHA256SUMS.txt) | Optional download verification — Check downloaded files |
+
+[View all files on the release page](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2)
 
 The kernel filename retains `test` because the release uses the exact device-tested binary. It is not a claim of broad stable-device support. GitHub's automatic **Source code** archives are source downloads, **not flashable ZIPs**.
 
