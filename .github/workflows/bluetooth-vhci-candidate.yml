@@ -70,7 +70,23 @@ jobs:
           cp rom-kernel/out/.config vhci-evidence/resolved.config
           clang --version | tee vhci-evidence/compiler.txt
           make -C rom-kernel -j"$(nproc)" O=out ARCH=arm64 LLVM=1 modules_prepare 2>&1 | tee vhci-evidence/prepare.log
-          cmp rom-kernel/out/.config vhci-evidence/resolved.config
+          cp rom-kernel/out/.config vhci-evidence/prepared.config
+          python3 - <<'PY_CONFIG'
+          from pathlib import Path
+          import difflib
+          original=Path('vhci-evidence/resolved.config').read_text().splitlines()
+          prepared=Path('vhci-evidence/prepared.config').read_text().splitlines()
+          diff='\n'.join(difflib.unified_diff(original,prepared,fromfile='baseline.config',tofile='prepared.config'))
+          Path('vhci-evidence/config.diff').write_text(diff+'\n')
+          print(diff or 'Configurations identical')
+          def settings(lines):
+              return [line for line in lines if not line.startswith('CONFIG_CC_VERSION_TEXT=')]
+          assert settings(original)==settings(prepared), 'Unexpected configuration changes; inspect config.diff'
+          for line in prepared:
+              if line.startswith('CONFIG_CC_VERSION_TEXT='):
+                  assert 'clang version 22.1.8' in line, line
+          print('All settings match except permitted compiler-description text')
+          PY_CONFIG
           test "$(cat rom-kernel/out/include/config/kernel.release)" = 6.6.142-4k-g7750565ada3d-dirty
           cp inherited-evidence/Module.symvers rom-kernel/out/Module.symvers
           cp inherited-evidence/Module.symvers vhci-evidence/Module.symvers
@@ -99,6 +115,7 @@ jobs:
           cp "$ko" verified-vhci/
           sha256sum "$ko" > vhci-evidence/SHA256SUMS.txt
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
         with:
           name: isolated-vhci-candidate-NOT-INSTALLED
           path: |
