@@ -10,5 +10,4 @@ This overlay contains no third-party driver binaries or original airmon-ng.
 Validation: ZIP integrity and both SHA256 manifests verified; Android sh syntax
 passed for installer/service/action/helper/uninstall/wrapper. Standalone monitor
 activation and passive reception verified on the target phone, and Kali direct
-airmon-ng start/stop integration verified. Full KernelSU ZIP installation and
-postboot test remain pending: release is a DRAFT until completed.
+airmon-ng start/stop integration verified. Full KernelSU ZIP installation and postboot checks passed: v0.1.3 active, both drivers auto-loaded, USB guard passed, Action wrapper matches and direct Kali start/stop passed. Manifest checks also passed under KernelSU BusyBox after enforcing LF line endings.

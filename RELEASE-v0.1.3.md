@@ -44,6 +44,6 @@ Default channel is 6; helper accepts 2.4 GHz channels 1–11. Normal Wi-Fi is au
 
 POCO F7 / onyx, documented Infinity-X 4.1 Android 17 build, matching `6.6.142-4k-g7750565ada3d-dirty` kernel. Other ROMs/chroot layouts are not verified.
 
-**DRAFT — package installation/postboot verification pending.** Archive/manifests and Android shell syntax pass. The working phone's installed v0.1.2 module has not been replaced by this ZIP. Do not publish as validated until the full update test passes.
+Package installation and reboot verification passed on the target phone: v0.1.3 active, both existing external drivers auto-loaded, USB guard passed, module Action installed the matching Kali wrapper, and direct airmon-ng start/stop passed. Normal Wi-Fi restored afterward. KernelSU BusyBox checksum verification passed after correcting manifest line endings. The five-minute timer is configured; automatic timeout itself has not been independently qualified in this packaged update.
 
 Credits: Onyx kernel contributors, Qualcomm/ROM Wi-Fi driver contributors, KernelSU Next, aircrack-ng, and existing project credits. No kernel or external driver rebuild in this update.
