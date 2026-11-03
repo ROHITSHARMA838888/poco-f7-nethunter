@@ -1,0 +1,6 @@
+id=onyx_verified_wifi
+name=Onyx NetHunter Wi-Fi and internal monitor support
+version=v0.1.3-internal-monitor
+versionCode=5
+author=Rohit Sharma (ROHITSHARMA838888)
+description=Same tested external Wi-Fi drivers; adds WCN7750 internal monitor activation through Kali airmon-ng. Existing kernel unchanged. Hotspot off; automatic normal-mode restore after five minutes.

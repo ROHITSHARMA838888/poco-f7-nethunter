@@ -1,0 +1,21 @@
+#!/bin/sh
+# Onyx WCN7750 compatibility; original aircrack-ng script is package-diverted.
+PATH=/usr/sbin:/usr/bin:/sbin:/bin
+export PATH
+ORIGINAL=/usr/sbin/airmon-ng.distrib
+if [ "${2:-}" = wlan0 ] && [ -f /sys/module/qca_cld3_wcn7750/parameters/con_mode ]; then
+ case "${1:-}" in
+  start|stop)
+   [ "$(id -u)" = 0 ] || { echo 'Run airmon-ng as root.' >&2; exit 1; }
+   [ -x /usr/sbin/chroot ] && [ -f /proc/1/root/data/adb/modules/onyx_verified_wifi/internal/onyx-monitor.sh ] || {
+    echo 'Onyx Android monitor helper unavailable; enter the normal NetHunter Kali chroot.' >&2
+    exit 1
+   }
+   if [ "$1" = start ]; then
+    exec /usr/sbin/chroot /proc/1/root /system/bin/sh /data/adb/modules/onyx_verified_wifi/internal/onyx-monitor.sh start "${3:-6}"
+   fi
+   exec /usr/sbin/chroot /proc/1/root /system/bin/sh /data/adb/modules/onyx_verified_wifi/internal/onyx-monitor.sh stop
+   ;;
+ esac
+fi
+exec "$ORIGINAL" "$@"
