@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.1.3 — Wi-Fi module update (draft)
+
+The kernel ZIP and external driver binaries are unchanged. Existing users update only the KernelSU Wi-Fi module; new users install the original kernel ZIP and updated module.
+
+- Adds internal WCN7750 monitor activation through Kali airmon-ng.
+- Preserves original airmon-ng; adds stop/restore and a five-minute automatic restore.
+- Passive reception and direct start/stop verified; packaged installation/postboot test pending.
+- See [upgrade instructions and release details](RELEASE-v0.1.3.md).
+
+
 ## Validation update — 2026-11-02
 
 These are additional tests of the existing v0.1.2 packages; no kernel/module binary or release ZIP was rebuilt or replaced.
