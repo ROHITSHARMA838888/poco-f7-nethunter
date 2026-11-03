@@ -5,8 +5,8 @@
 The kernel ZIP and external driver binaries are unchanged. Existing users update only the KernelSU Wi-Fi module; new users install the original kernel ZIP and updated module.
 
 - Adds internal WCN7750 monitor activation through Kali airmon-ng.
-- Preserves original airmon-ng; adds stop/restore and a five-minute automatic restore.
-- Passive reception verified. Packaged module install, reboot autoload, USB guard, Action integration and direct Kali start/stop verified.
+- Preserves original airmon-ng; automatic Kali/Stryker/Android root integration without Action button. No session time limit.
+- Passive reception and initial module install/reboot verified. Revised automatic package install/reboot and Stryker in-app verification pending.
 - See [upgrade instructions and release details](RELEASE-v0.1.3.md).
 
 

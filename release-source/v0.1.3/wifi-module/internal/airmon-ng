@@ -8,7 +8,7 @@ if [ "${2:-}" = wlan0 ] && [ -f /sys/module/qca_cld3_wcn7750/parameters/con_mode
   start|stop)
    [ "$(id -u)" = 0 ] || { echo 'Run airmon-ng as root.' >&2; exit 1; }
    [ -x /usr/sbin/chroot ] && [ -f /proc/1/root/data/adb/modules/onyx_verified_wifi/internal/onyx-monitor.sh ] || {
-    echo 'Onyx Android monitor helper unavailable; enter the normal NetHunter Kali chroot.' >&2
+    echo 'Onyx Android monitor helper unavailable; use a rooted chroot with host /proc mounted.' >&2
     exit 1
    }
    if [ "$1" = start ]; then

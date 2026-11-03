@@ -42,6 +42,7 @@ ui_print '- Matching Realtek drivers and USB guard prepared.'
 ui_print '- USB HAL stays running; hub permissions restore on unplug/exit.'
 ui_print '- Reboot to activate. No kernel partition or ROM file changed.'
 
-chmod 755 "$MODPATH/action.sh" "$MODPATH/uninstall-monitor.sh" "$MODPATH/internal/onyx-monitor.sh" "$MODPATH/internal/airmon-ng"
-ui_print "- Internal monitor: after reboot, open Kali then tap module Action if needed."
+chmod 755 "$MODPATH/install-monitor.sh" "$MODPATH/monitor-autoinstall.sh" "$MODPATH/uninstall-monitor.sh" "$MODPATH/internal/onyx-monitor.sh" "$MODPATH/internal/airmon-ng" "$MODPATH/internal/airmon-ng-android"
+/system/bin/sh "$MODPATH/install-monitor.sh" || abort "Monitor integration installation failed."
+ui_print "- Automatic Kali/Stryker/Android root integration; no Action button."
 ui_print "- Existing kernel users: module update only; no kernel reflash."

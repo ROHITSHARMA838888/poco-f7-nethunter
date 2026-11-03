@@ -37,18 +37,20 @@ update ONLY this ZIP in KernelSU Next Manager and reboot with adapters removed.
 New users install the original kernel ZIP using OrangeFox and this module in
 KernelSU Next Manager. Do not install this ZIP through recovery.
 
-Kali with aircrack-ng is required. Start Kali so its mounts are ready, then tap
-this module's Action button if integration was not ready at boot. Supported
-chroot: /data/local/nhsystem/kali-arm64. Other roots are not auto-selected.
+Integration installs automatically for existing Kali and Stryker root filesystems,
+and Android root shell. No Action button or preliminary helper command.
+Supported roots: /data/local/nhsystem/kali-arm64 and /data/local/stryker/release.
+The boot worker also checks every 20 seconds for later installs or replacements.
+Other layouts, rootless sessions and Android virtual machines are not qualified.
 Hotspot OFF; run in Kali root terminal:
   airmon-ng start wlan0 6
   airodump-ng --channel 6 wlan0
   airmon-ng stop wlan0
-Default channel 6, supported helper input 1-11; five-minute automatic restore.
+Default channel 6, supported helper input 1-11. No session time limit; stop manually.
 Internal passive beacon reception is verified. Internal injection/deauth are
-not qualified. Captures must stop before automatic restore or manual stop.
+not qualified. Stop capture before running airmon-ng stop wlan0.
 Original airmon-ng is preserved through a local dpkg diversion; uninstall
 restores it if the installed wrapper has not been changed by another tool.
-After Kali reinstall, open Kali and tap module Action to install integration.
+Kali/Stryker reinstall is detected automatically while this module is enabled.
 Disabling module does not run uninstall: re-enable it or uninstall to restore
 original airmon-ng. No automatic monitor activation or boot partition writes.

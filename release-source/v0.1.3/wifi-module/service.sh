@@ -14,7 +14,7 @@ if [ "$(uname -r)" != 6.6.142-4k-g7750565ada3d-dirty ]; then
 fi
 cd "$MODDIR"
 sha256sum -c GUARD_SHA256SUMS
-/system/bin/sh "$MODDIR/action.sh"
+nohup /system/bin/sh "$MODDIR/monitor-autoinstall.sh" </dev/null >/dev/null 2>&1 &
 # Android's own ROM modules must be ready before external drivers.
 attempt=0
 while ! grep -q '^cfg80211 ' /proc/modules; do
