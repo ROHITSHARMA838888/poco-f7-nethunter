@@ -18,12 +18,14 @@
 #include <unistd.h>
 
 /* No writes to USB authorization values, ROM, properties or SELinux policy.
- * Restrict only the parent hub's authorization mode while one of two exact
+ * Restrict only the parent hub's authorization mode while one of three exact
  * known adapters is present. The original open inode is retained for restore.
  * A child with a private pipe restores modes if the parent exits or crashes.
  */
 #define MAX_HUBS 8
-#define STATE "/data/adb/onyx-drivers-40863319425"
+#ifndef STATE
+#define STATE "/data/adb/onyx-usb-auth-guard"
+#endif
 struct guard {
     int fd, life;
     mode_t before, guarded;
@@ -40,6 +42,9 @@ static double now(void) {
     struct timespec ts;
     if (clock_gettime(CLOCK_MONOTONIC, &ts)) return 0;
     return (double)ts.tv_sec + (double)ts.tv_nsec / 1e9;
+}
+static bool supported_adapter(unsigned vid, unsigned pid) {
+    return vid == 0x2357 && (pid == 0x0120 || pid == 0x011f || pid == 0x010c);
 }
 static bool read_value(const char *path, unsigned *value) {
     char buf[64];
@@ -140,7 +145,7 @@ static unsigned rescan(void) {
         if (n < 0 || (size_t)n >= sizeof(p) || !read_value(p, &vid)) continue;
         n = snprintf(p, sizeof(p), "/sys/bus/usb/devices/%s/idProduct", entry->d_name);
         if (n < 0 || (size_t)n >= sizeof(p) || !read_value(p, &pid)) continue;
-        if (vid != 0x2357 || (pid != 0x0120 && pid != 0x010c)) continue;
+        if (!supported_adapter(vid, pid)) continue;
         n = snprintf(q, sizeof(q), "/sys/bus/usb/devices/%s/../authorized", entry->d_name);
         if (n < 0 || (size_t)n >= sizeof(q) || !realpath(q, real)) continue;
         size_t len = strlen(real);
@@ -166,10 +171,28 @@ static bool usb_event(const char *buf, size_t len) {
     }
     return false;
 }
+static int acquire_lock(void) {
+    if (mkdir(STATE, 0700) && errno != EEXIST) return -1;
+    int dir = open(STATE, O_RDONLY | O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
+    if (dir < 0) return -1;
+    struct stat st;
+    if (fstat(dir, &st) || st.st_uid != geteuid() || (st.st_mode & 0077)) {
+        close(dir); errno = EPERM; return -1;
+    }
+    int fd = openat(dir, "usb-auth-guard.lock", O_CREAT | O_RDWR | O_NOFOLLOW | O_CLOEXEC, 0600);
+    close(dir);
+    if (fd < 0) return -1;
+    if (fstat(fd, &st) || !S_ISREG(st.st_mode) || st.st_uid != geteuid() || st.st_nlink != 1) {
+        close(fd); errno = EPERM; return -1;
+    }
+    if (flock(fd, LOCK_EX | LOCK_NB)) { int e = errno; close(fd); errno = e; return -1; }
+    return fd;
+}
 int main(int argc, char **argv) {
     setvbuf(stdout, NULL, _IOLBF, 0);
+    bool check_lock = argc == 2 && !strcmp(argv[1], "--check-lock");
     bool persistent = argc == 2 && !strcmp(argv[1], "--run");
-    if (argc != 2 || (!persistent && strcmp(argv[1], "--test"))) {
+    if (argc != 2 || (!persistent && !check_lock && strcmp(argv[1], "--test"))) {
         puts("Usage: usb-auth-guard --test (45s active/2h idle) or --run (until stopped; restore on unplug/exit)");
         return argc == 2 && !strcmp(argv[1], "--help") ? 0 : 2;
     }
@@ -179,8 +202,9 @@ int main(int argc, char **argv) {
     sigaction(SIGTERM, &sa, NULL); sigaction(SIGINT, &sa, NULL);
     struct sigaction child = {0}; child.sa_handler = SIG_IGN;
     sigaction(SIGCHLD, &child, NULL);
-    lockfd = open(STATE "/usb-auth-guard.lock", O_CREAT | O_RDWR | O_CLOEXEC, 0600);
-    if (lockfd < 0 || flock(lockfd, LOCK_EX | LOCK_NB)) { perror("guard lock"); return 1; }
+    lockfd = acquire_lock();
+    if (lockfd < 0) { perror("guard lock"); return 1; }
+    if (check_lock) { puts("GUARD_LOCK_CHECK_PASS"); close(lockfd); return 0; }
     netfd = socket(AF_NETLINK, SOCK_DGRAM | SOCK_CLOEXEC | SOCK_NONBLOCK, NETLINK_KOBJECT_UEVENT);
     if (netfd < 0) { perror("uevent socket"); return 1; }
     struct sockaddr_nl address = {.nl_family = AF_NETLINK, .nl_pid = (unsigned)getpid(), .nl_groups = 1};

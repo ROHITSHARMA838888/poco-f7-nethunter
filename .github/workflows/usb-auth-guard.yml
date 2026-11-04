@@ -1,11 +1,12 @@
 name: Build small Android USB authorization guard test
 on:
   push:
-    branches: [codex/rom-symbol-baseline]
+    branches: [codex/usb-guard-lock-t2u-fix]
     paths:
       - .github/workflows/usb-auth-guard.yml
       - compatibility/usb_auth_guard.c
       - compatibility/usb_auth_guard_restore_test.c
+      - compatibility/usb_auth_guard_lock_test.c
   workflow_dispatch:
 permissions:
   contents: read
@@ -25,6 +26,8 @@ jobs:
           cc -std=c11 -O2 -Wall -Wextra -Werror -fsyntax-only compatibility/usb_auth_guard.c
           cc -std=c11 -O2 -Wall -Wextra -Werror -o /tmp/onyx-guard-restore-test compatibility/usb_auth_guard_restore_test.c
           /tmp/onyx-guard-restore-test | tee guard-evidence/restore-tests.txt
+          cc -std=c11 -O2 -Wall -Wextra -Werror -o /tmp/onyx-guard-lock-test compatibility/usb_auth_guard_lock_test.c
+          /tmp/onyx-guard-lock-test | tee guard-evidence/lock-tests.txt
           ndk="${ANDROID_NDK_LATEST_HOME:-}"
           if [ ! -x "$ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang" ]; then
             ndk=$(find "$ANDROID_HOME/ndk" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n1)
