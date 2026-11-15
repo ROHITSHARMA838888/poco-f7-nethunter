@@ -2,7 +2,7 @@ name: Compile experimental Infinity WCN7750 module
 on:
   push:
     branches: [codex/internal-wlan-compile]
-    paths: [.github/workflows/internal-wlan-compile.yml]
+    paths: [.github/workflows/internal-wlan-compile.yml, 'experimental/wcn7750/**']
   workflow_dispatch:
 permissions:
   contents: read
@@ -32,7 +32,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get update
-          sudo apt-get install -y build-essential flex bison libssl-dev libelf-dev bc dwarves python3 kmod rsync xz-utils
+          sudo apt-get install -y build-essential flex bison libssl-dev libelf-dev bc dwarves python3 python3-pyelftools kmod rsync xz-utils
           curl --fail --location --retry 3 --retry-delay 5 -o "$RUNNER_TEMP/llvm.tar.xz" https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/LLVM-22.1.8-Linux-X64.tar.xz
           echo "df0e1ecf16caf3489a272a5eea4eec9b0d82878f6477fa309504f918a0006384  $RUNNER_TEMP/llvm.tar.xz" | sha256sum -c -
           mkdir -p "$RUNNER_TEMP/llvm22"

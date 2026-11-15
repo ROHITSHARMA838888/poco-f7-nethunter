@@ -27,7 +27,8 @@ COMMON_ARGS=(
 EXTRA_SYMVERS="$VENDOR_SYMVERS"
 
 echo "[+] Building WCN7750 driver"
-make -j"$JOBS" -C "$KERNEL_SRC" O="$KERNEL_OUT" M="$QCACLD_DIR" modules \
+make_wlan() {
+make -j"$JOBS" -C "$KERNEL_SRC" O="$KERNEL_OUT" M="$QCACLD_DIR" "$@" \
 	"${COMMON_ARGS[@]}" \
 	WLAN_ROOT="$QCACLD_DIR" \
 	WLAN_PROFILE=sun_gki_wcn7750 \
@@ -47,15 +48,22 @@ make -j"$JOBS" -C "$KERNEL_SRC" O="$KERNEL_OUT" M="$QCACLD_DIR" modules \
 	CONFIG_CNSS2_SSR_DRIVER_DUMP=y \
 	CONFIG_WLAN_FEATURE_WMI_DIAG_OVER_CE7=y \
 	KBUILD_EXTRA_SYMBOLS="$EXTRA_SYMVERS"
+}
+make_wlan modules
 
 
 ko="$QCACLD_DIR/qca_cld3_wcn7750.ko"
+mkdir -p compiled-wlan-NOT-FLASHABLE
+cp "$ko" compiled-wlan-NOT-FLASHABLE/
+llvm-nm -a "$ko" > wlan-evidence/defined-symbols.txt
+llvm-readelf -sW "$ko" > wlan-evidence/elf-symbols.txt
+cp "$QCACLD_DIR/core/hdd/src/.wlan_hdd_tx_rx.o.cmd" wlan-evidence/wlan_hdd_tx_rx.cmd
+modinfo "$ko" > wlan-evidence/modinfo.txt
+sha256sum "$ko" > wlan-evidence/SHA256SUMS.txt
 test "$(modinfo -F name "$ko")" = qca_cld3_wcn7750
 test "$(modinfo -F vermagic "$ko" | cut -d' ' -f1)" = 6.6.142-4k-g7750565ada3d-dirty
 modprobe --show-modversions "$ko" > wlan-evidence/imported-crcs.txt
 python3 experimental/wcn7750/verify_imports.py
-llvm-nm "$ko" | grep ' hdd_monitor_mode_tx_inject$'
-modinfo "$ko" > wlan-evidence/modinfo.txt
-mkdir -p compiled-wlan-NOT-FLASHABLE
-cp "$ko" compiled-wlan-NOT-FLASHABLE/
-sha256sum "$ko" > wlan-evidence/SHA256SUMS.txt
+make_wlan core/hdd/src/wlan_hdd_tx_rx.i
+cp "$QCACLD_DIR/core/hdd/src/wlan_hdd_tx_rx.i" wlan-evidence/
+/usr/bin/python3 experimental/wcn7750/verify_tx_path.py
