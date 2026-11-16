@@ -13,7 +13,11 @@ WLAN_CTRL_NAME=wlan
 test -s "$VENDOR_SYMVERS"
 test -f "$KERNEL_SRC/include/linux/qcom-iommu-util.h"
 test -d "$QCACLD_DIR/cmn"
-grep -qx CONFIG_FEATURE_FRAME_INJECTION_SUPPORT=y "$QCACLD_DIR/configs/sun_gki_wcn7750_defconfig"
+if [ "${WLAN_CONTROL_BUILD:-0}" = 1 ]; then
+ ! grep -qx CONFIG_FEATURE_FRAME_INJECTION_SUPPORT=y "$QCACLD_DIR/configs/sun_gki_wcn7750_defconfig"
+else
+ grep -qx CONFIG_FEATURE_FRAME_INJECTION_SUPPORT=y "$QCACLD_DIR/configs/sun_gki_wcn7750_defconfig"
+fi
 COMMON_ARGS=(
 	ARCH=arm64
 	SUBARCH=arm64
@@ -64,6 +68,13 @@ test "$(modinfo -F name "$ko")" = qca_cld3_wcn7750
 test "$(modinfo -F vermagic "$ko" | cut -d' ' -f1)" = 6.6.142-4k-g7750565ada3d-dirty
 modprobe --show-modversions "$ko" > wlan-evidence/imported-crcs.txt
 python3 experimental/wcn7750/verify_imports.py
-make_wlan core/hdd/src/wlan_hdd_tx_rx.i
-cp "$QCACLD_DIR/core/hdd/src/wlan_hdd_tx_rx.i" wlan-evidence/
-/usr/bin/python3 experimental/wcn7750/verify_tx_path.py
+if [ "${WLAN_CONTROL_BUILD:-0}" = 1 ]; then
+ ! grep -q -- '-DFEATURE_FRAME_INJECTION_SUPPORT' wlan-evidence/wlan_hdd_tx_rx.cmd
+ echo UNPATCHED_CONTROL_BUILD_VERIFIED
+else
+ make_wlan core/hdd/src/wlan_hdd_tx_rx.i
+ cp "$QCACLD_DIR/core/hdd/src/wlan_hdd_tx_rx.i" wlan-evidence/
+ /usr/bin/python3 experimental/wcn7750/verify_tx_path.py
+fi
+llvm-strip --strip-debug compiled-wlan-NOT-FLASHABLE/qca_cld3_wcn7750.ko
+sha256sum compiled-wlan-NOT-FLASHABLE/qca_cld3_wcn7750.ko > wlan-evidence/STRIPPED_SHA256SUMS.txt
