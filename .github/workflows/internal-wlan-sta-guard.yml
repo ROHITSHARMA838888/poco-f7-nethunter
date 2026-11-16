@@ -1,0 +1,122 @@
+name: Compile monitor-only capability guard candidate
+on:
+  push:
+    branches: [codex/internal-wlan-sta-guard]
+    paths: [.github/workflows/internal-wlan-sta-guard.yml, 'experimental/wcn7750/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: internal-wlan-sta-guard
+  cancel-in-progress: true
+jobs:
+  baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      ROM_PROBE_TOOLCHAIN_SCOPE: Upstream LLVM 22.1.8 candidate; baseline used apt LLVM 22.1.8; CRC checks mandatory
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Download already-built root candidate metadata
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: rom-root-adapter-symbol-evidence
+          run-id: 41207879867
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: inherited-evidence
+      - name: Install pinned upstream LLVM 22.1.8
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y build-essential flex bison libssl-dev libelf-dev bc dwarves python3 python3-pyelftools kmod rsync xz-utils
+          curl --fail --location --retry 3 --retry-delay 5 -o "$RUNNER_TEMP/llvm.tar.xz" https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.8/LLVM-22.1.8-Linux-X64.tar.xz
+          echo "df0e1ecf16caf3489a272a5eea4eec9b0d82878f6477fa309504f918a0006384  $RUNNER_TEMP/llvm.tar.xz" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/llvm22"
+          tar -xJf "$RUNNER_TEMP/llvm.tar.xz" -C "$RUNNER_TEMP/llvm22" --strip-components=1
+          "$RUNNER_TEMP/llvm22/bin/clang" --version | grep 'clang version 22.1.8'
+          echo "$RUNNER_TEMP/llvm22/bin" >> "$GITHUB_PATH"
+      - name: Fetch exact ROM kernel source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git init rom-kernel
+          git -C rom-kernel remote add origin https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735.git
+          git -C rom-kernel fetch --depth=1 origin 7750565ada3d57e195798519b005d2b038e888c1
+          git -C rom-kernel checkout --detach FETCH_HEAD
+          test "$(git -C rom-kernel rev-parse HEAD)" = 7750565ada3d57e195798519b005d2b038e888c1
+      - name: Integrate pinned KernelSU Next
+        shell: bash
+        run: |
+          set -euo pipefail
+          git init rom-kernel/.root_modules/KernelSU-Next
+          git -C rom-kernel/.root_modules/KernelSU-Next remote add origin https://github.com/KernelSU-Next/KernelSU-Next.git
+          git -C rom-kernel/.root_modules/KernelSU-Next fetch origin b427a3f9c2421a443f961007bfce66b25486643f
+          git -C rom-kernel/.root_modules/KernelSU-Next checkout --detach FETCH_HEAD
+          test "$(git -C rom-kernel/.root_modules/KernelSU-Next rev-parse HEAD)" = b427a3f9c2421a443f961007bfce66b25486643f
+          ln -s ../.root_modules/KernelSU-Next/kernel rom-kernel/drivers/kernelsu
+          python3 compatibility/wire_rom_root.py
+          git -C rom-kernel diff --check
+          git -C rom-kernel diff --exit-code -- kernel/module/
+      - name: Prepare exact running headers and dependency CRC table
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p rom-kernel/out wlan-evidence
+          cp inherited-evidence/resolved.config rom-kernel/out/.config
+          cp rom-kernel/out/.config wlan-evidence/resolved.config
+          clang --version | tee wlan-evidence/compiler.txt
+          make -C rom-kernel -j"$(nproc)" O=out ARCH=arm64 LLVM=1 modules_prepare 2>&1 | tee wlan-evidence/prepare.log
+          cp rom-kernel/out/.config wlan-evidence/prepared.config
+          python3 - <<'PY_CONFIG'
+          from pathlib import Path
+          import difflib
+          original=Path('wlan-evidence/resolved.config').read_text().splitlines()
+          prepared=Path('wlan-evidence/prepared.config').read_text().splitlines()
+          diff='\n'.join(difflib.unified_diff(original,prepared,fromfile='baseline.config',tofile='prepared.config'))
+          Path('wlan-evidence/config.diff').write_text(diff+'\n')
+          print(diff or 'Configurations identical')
+          def settings(lines):
+              return [line for line in lines if not line.startswith('CONFIG_CC_VERSION_TEXT=')]
+          assert settings(original)==settings(prepared), 'Unexpected configuration changes; inspect config.diff'
+          for line in prepared:
+              if line.startswith('CONFIG_CC_VERSION_TEXT='):
+                  assert 'clang version 22.1.8' in line, line
+          print('All settings match except permitted compiler-description text')
+          PY_CONFIG
+          test "$(cat rom-kernel/out/include/config/kernel.release)" = 6.6.142-4k-g7750565ada3d-dirty
+          cp inherited-evidence/Module.symvers rom-kernel/out/Module.symvers
+          cp inherited-evidence/Module.symvers wlan-evidence/Module.symvers
+      - name: Fetch pinned vendor source and apply reviewed port
+        shell: bash
+        run: |
+          set -euo pipefail
+          git init vendor-modules
+          git -C vendor-modules remote add origin https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735-modules.git
+          git -C vendor-modules sparse-checkout init --cone
+          git -C vendor-modules sparse-checkout set qcom/opensource/wlan qcom/opensource/dataipa
+          git -C vendor-modules fetch --depth=1 --filter=blob:none origin 02727998cd386983341bfc79c34dd20f5be7fb1b
+          git -C vendor-modules checkout --detach FETCH_HEAD
+          test "$(git -C vendor-modules rev-parse HEAD)" = 02727998cd386983341bfc79c34dd20f5be7fb1b
+          patch="$GITHUB_WORKSPACE/experimental/wcn7750/infinity-wcn7750-experimental.patch"
+          git -C vendor-modules apply --check --verbose --directory=qcom/opensource/wlan "$patch"
+          git -C vendor-modules apply --directory=qcom/opensource/wlan "$patch"
+          guard="$GITHUB_WORKSPACE/experimental/wcn7750/mission-mode-capability-guard.patch"
+          git -C vendor-modules apply --check --verbose --directory=qcom/opensource/wlan "$guard"
+          git -C vendor-modules apply --directory=qcom/opensource/wlan "$guard"
+          git -C vendor-modules diff --check
+      - name: Compile and check imported CRCs
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash experimental/wcn7750/build.sh 2>&1 | tee wlan-evidence/wlan-build.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sta-guard-wcn7750-NOT-FLASHABLE
+          path: |
+            wlan-evidence/
+            compiled-wlan-NOT-FLASHABLE/
