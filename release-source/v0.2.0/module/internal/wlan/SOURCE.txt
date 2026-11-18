@@ -1,0 +1,21 @@
+WLAN source:
+https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735-modules/tree/02727998cd386983341bfc79c34dd20f5be7fb1b
+
+Kernel headers/config provenance:
+https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735/tree/7750565ada3d57e195798519b005d2b038e888c1
+KernelSU Next: b427a3f9c2421a443f961007bfce66b25486643f
+Compiler: LLVM 22.1.8. Kernel configuration and symbol evidence: build41207879867.
+
+Exact integration patch and supplementary mission-mode guard, build arguments,
+workflow and validation source:
+https://github.com/ROHITSHARMA838888/poco-f7-nethunter/tree/2b114df/experimental/wcn7750
+https://github.com/ROHITSHARMA838888/poco-f7-nethunter/blob/2b114df/.github/workflows/internal-wlan-sta-guard.yml
+Build: https://github.com/ROHITSHARMA838888/poco-f7-nethunter/actions/runs/43794293758
+
+Packaged stripped driver SHA256:
+4d8d93b7154109fa840f1052fda7e19fc8da7085b3b985018bd280351a573c6d
+
+Module helpers do not change the driver binary. They perform one load attempt per
+boot, with rollback and a startup health journal. An incomplete prior startup
+suspends subsequent automatic replacement. The 60-second health marker does not
+qualify every possible later failure. No reconstruction archive is published.

@@ -1,24 +1,27 @@
-# Onyx NetHunter v0.1.2 — POCO F7 / onyx (Unofficial)
+## Onyx NetHunter v0.2.0 — POCO F7 / onyx
 
-**Tested only on Infinity-X4.1 Android17, incremental1792766195, patch2026-10-01.** Linux6.6.142; exact runtime6.6.142-4k-g7750565ada3d-dirty. Other ROMs/updates are not verified; installer guards must not be bypassed.
+Unofficial update. **Download both ZIPs for a fresh setup.** Existing matching-kernel users can update only the module.
 
-## Packages
+### Downloads & installation
 
-- **Kernel ZIP:** OrangeFox recovery installer, KernelSU Next, HID configuration, Kali boot animation/wallpaper. Historical `test` filename is retained because these are the exact device-tested bytes.
-- **WiFi ZIP:** install through KernelSU Next Manager after the matching kernel, then reboot with adapters removed. Includes both fixed external drivers and the targeted USB stability guard.
-- **SHA256SUMS.txt:** verify downloads. Source pins, patches and packaging sources remain available in the repository under SOURCE.md.
+- **Kernel ZIP:** `Onyx-NetHunter-v0.2.0-Kernel.zip` → OrangeFox recovery → Install → Flash → reboot.
+- **Combined module:** `Onyx-NetHunter-v0.2.0-WiFi-Bluetooth-KernelSU.zip` → KernelSU Next → Modules → Install → reboot.
+- [Flashing guide and commands](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/blob/main/README.md#installation)
 
-## Verified
+### Changelog
 
-Both Archer T2U Plus2357:0120 and WN722Nv2/v3 2357:010c passed monitor transitions and one bounded owned-hotspot probe injection test each (29/30 replies). Both fixed drivers auto-load after reboot, both postboot attachment tests passed, USB guard restores hub permissions on unplug, and WN LED works. Final bounded WN tests showed no new kernel warning. KernelSU root works; HID keyboard enumeration passed (keystroke transmission untested).
+- Added guarded internal Wi-Fi injection and deauth support; monitor mode working.
+- Internal targeted deauth tested: owned laptop connection reset and recovered in about 3 seconds.
+- Added internal Bluetooth bridge and VHCI integration to the main Wi-Fi module. Kali Bluetooth Start creates HCI; UP/Stop/restore working.
+- Kept the fixed Archer T2U Plus / WN722N v2/v3 drivers and USB reconnect guard.
+- Added Blue Glitch boot animation and wallpaper assets; no bundled APKs or Kali chroot.
+- Removed ROM-name, Android-version and build/patch-date installer allowlists. Device and essential compatibility checks remain.
+- Existing working Linux 6.6.142 kernel Image retained. No SUSFS or abandoned v3.4.2 experimental build included.
 
-Callback type repairs preserve KCFI/KASAN. WN monitor disconnect now accepts the valid monitor state without hiding warnings for unknown states. No kernel recompile was required for these external-driver fixes.
+### Before flashing
 
-## Limits
+**POCO F7 / onyx only.** Back up Boot; keep the bootloader unlocked. Stop monitor/Kali Bluetooth sessions and unplug OTG before updating. Module requires the matching kernel and KernelSU Next. Android Bluetooth must be OFF before Kali Bluetooth Start.
 
-This is an unofficial community build, not an official Kali release. Not long-term/all-frame/all-ROM qualification. Deauth/MDK and internal Wi-Fi capture/injection are **untested**. WN722Nv1 is excluded from the module. Kali chroot/apps are separate. Keep your own boot backup and read INSTALL.md for exact requirements and rollback. Old Konoha6.6.143 Actions artifacts are incompatible with the tested ROM and are not this release.
+Tested on **Infinity-X 4.1 and 4.2 / Android 17**; newest combined-module runtime tests were on 4.2. Other ROMs may be compatible but remain untested. Exact newly versioned ZIPs / revised unrestricted installer still need a fresh flash test; existing Image/drivers and r3 functionality were tested. Banking/Play Integrity issues are not resolved; Bluetooth HID pairing remains unresolved.
 
-Sources/credits: xiaomi-onyx-playground kernel, KernelSU Next, aircrack-ng/Realtek, osm0sis AnyKernel3, topjohnwu Magisk utilities, Kali NetHunter artwork contributors. Full source links/pins/patches and original licences are included in the repository.
-
-Updates: https://t.me/POCO_F7_NETHUNTER
-Discussion: https://t.me/poco_f7_discussion
+[Updates](https://t.me/POCO_F7_NETHUNTER) · [Discussion](https://t.me/poco_f7_discussion)

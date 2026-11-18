@@ -1,5 +1,5 @@
-# Current project status
+# Build status — v0.2.0
 
-See [README.md](README.md), [INSTALL.md](INSTALL.md) and [SOURCE.md](SOURCE.md) for the current v0.1.2 build.
+Working original kernel Image unchanged. Combined module is the device-tested r3 functionality with release metadata v0.2.0/code17. Package manifests and archive integrity checked. The unrestricted r6 installer and the exact newly versioned ZIPs have not had a fresh flash test. Latest internal deauth and Bluetooth HCI start/up/stop tests passed on Infinity-X 4.2; historical kernel/base testing also covered 4.1. Other ROMs untested.
 
-The initial Konoha6.6.143 experiment compiled but did not match the tested ROM ABI. Do not flash those old artifacts. Current base is xiaomi-onyx-playground Linux6.6.142 with real KernelSU Next and separately tested external drivers. Development history remains available in Git; historical success does not imply compatibility.
+No SUSFS variant is released. The separate official-stable/SUSFS experiment failed while building the LKM and was abandoned at the owner's request.
