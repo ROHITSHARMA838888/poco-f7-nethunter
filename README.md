@@ -1,8 +1,15 @@
 <div align="center">
 
+<a href="https://t.me/POCO_F7_NETHUNTER"><img src="docs/assets/onyx-nethunter.png" alt="HCClubb Onyx NetHunter dragon artwork" width="340"></a>
+
 # Onyx NetHunter
 
-**POCO F7 / onyx · Unofficial · v0.2.0**
+**A NetHunter-ready setup for POCO F7**
+
+![Device](https://img.shields.io/badge/POCO_F7-onyx-10b981?style=flat-square)
+![Version](https://img.shields.io/badge/Release-v0.2.0-3b82f6?style=flat-square)
+![Kernel](https://img.shields.io/badge/Linux-6.6.142-64748b?style=flat-square)
+![Status](https://img.shields.io/badge/Community-Unofficial-a78bfa?style=flat-square)
 
 KernelSU Next · Internal & USB Wi-Fi · USB HID · Internal Bluetooth / VHCI
 
@@ -11,9 +18,23 @@ KernelSU Next · Internal & USB Wi-Fi · USB HID · Internal Bluetooth / VHCI
 [![Guide](https://img.shields.io/badge/Read-Flashing_Guide-f59e0b?style=for-the-badge)](#installation)
 [![Changelog](https://img.shields.io/badge/View-Changelog-6366f1?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.2.0)
 
-[Updates](https://t.me/POCO_F7_NETHUNTER) · [Discussion](https://t.me/poco_f7_discussion) · [Test photos](docs/testing/README.md)
+[![Updates](https://img.shields.io/badge/Telegram-Updates-229ed9?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/POCO_F7_NETHUNTER)
+[![Discussion](https://img.shields.io/badge/Telegram-Discussion-229ed9?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/poco_f7_discussion)
+
+[Compatibility](#compatibility) · [What's new](#version-history) · [Installation](#installation) · [Commands](#commands) · [Test photos](docs/testing/README.md)
 
 </div>
+
+---
+
+## Get started
+
+| Package | Install with | Purpose |
+| --- | --- | --- |
+| [**Kernel ZIP**](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.2.0/Onyx-NetHunter-v0.2.0-Kernel.zip) | **OrangeFox recovery** | KernelSU Next kernel + boot animation/wallpaper installer |
+| [**Wi-Fi + Bluetooth module**](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.2.0/Onyx-NetHunter-v0.2.0-WiFi-Bluetooth-KernelSU.zip) | **KernelSU Next Manager** | Internal Wi-Fi features, USB adapter drivers, USB guard and Bluetooth bridge |
+
+**Back up Boot first.** Already using our exact matching kernel? Update only the module for the new radio features. [Follow the flashing guide →](#installation)
 
 ## Compatibility
 
@@ -124,5 +145,11 @@ Use radio/HID tests only with your own devices and permission. [Additional test 
 - **Adapter disconnect/reboot:** remove OTG and stop testing.
 - **Module problem:** disable `onyx_verified_wifi` in KernelSU and reboot without adapters. This restores the ROM internal driver; it does not replace your kernel or remove installed visuals.
 - **Phone cannot boot:** use recovery to restore your own pre-flash Boot backup to the original slot.
+
+## Kernel base
+
+Built on the [Onyx kernel source by xiaomi-onyx-playground](https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735/tree/7750565ada3d57e195798519b005d2b038e888c1). Thanks to the original Onyx kernel developers for the base.
+
+---
 
 [Source, patches and licences](SOURCE.md) · [Build guide](docs/BUILDING.md) · [Known issues](docs/KNOWN-ISSUES.md) · [Full changelog](CHANGELOG.md)
