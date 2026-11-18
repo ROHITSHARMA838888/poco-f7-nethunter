@@ -8,7 +8,7 @@ Unofficial update. **Download both ZIPs for a fresh setup.** Existing matching-k
 - **Combined module:** `Onyx-NetHunter-v0.2.0-WiFi-Bluetooth-KernelSU.zip` → KernelSU Next → Modules → Install → reboot.
 - [Flashing guide and commands](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/blob/main/README.md#installation)
 
-### Changelog
+### v0.2.0 — New changes
 
 - Added guarded internal Wi-Fi injection and deauth support; monitor mode working.
 - Internal targeted deauth tested: owned laptop connection reset and recovered in about 3 seconds.
@@ -17,6 +17,12 @@ Unofficial update. **Download both ZIPs for a fresh setup.** Existing matching-k
 - Added Blue Glitch boot animation and wallpaper assets; no bundled APKs or Kali chroot.
 - Removed ROM-name, Android-version and build/patch-date installer allowlists. Device and essential compatibility checks remain.
 - Existing working Linux 6.6.142 kernel Image retained. No SUSFS or abandoned v3.4.2 experimental build included.
+
+### Previous version — v0.1.2
+
+The earlier release included KernelSU Next, external Archer/WN722N monitor/injection/deauth support, MDK and USB HID testing, internal Wi-Fi **monitor mode only**, and the earlier Kali visuals. Its downloadable module was later refreshed with the v0.1.4 USB-guard/path fix. It did not include the new internal injection/deauth or combined Bluetooth bridge.
+
+[View the separate v0.1.2 release and its changelog](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2)
 
 ### Before flashing
 

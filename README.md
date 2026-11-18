@@ -24,7 +24,30 @@ KernelSU Next · Internal & USB Wi-Fi · USB HID · Internal Bluetooth / VHCI
 - Kernel Image is unchanged from the working build. This release updates the installer and the combined module; it does **not** contain the abandoned SUSFS / KernelSU Next v3.4.2 experiment.
 - The revised unrestricted installer/versioned packages have passed offline checks; the exact new release ZIPs have not yet received a fresh flash test.
 
-## Features
+## Version history
+
+### v0.2.0 — New update
+
+- Internal Wi-Fi injection and targeted deauth added and tested, with the guarded normal/monitor driver.
+- Internal Bluetooth bridge and VHCI integrated into the same KSU module; Kali Start/UP/Stop tested.
+- Blue Glitch boot animation and wallpaper collection in the newer kernel installer; APKs/chroot remain separate.
+- ROM/Android build-date allowlists removed from the kernel installer; essential device/layout checks remain.
+- Same working kernel Image; combined module updated to v0.2.0 / code 17. No SUSFS included.
+
+[v0.2.0 downloads and full changelog](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.2.0)
+
+### v0.1.2 — Previous public release
+
+- Original working KernelSU Next kernel for POCO F7 / onyx.
+- Archer T2U Plus and TL-WN722N v2/v3 external Wi-Fi support, monitor/injection/deauth and MDK tests.
+- USB HID keyboard typing tested.
+- Internal Wi-Fi monitor mode; internal injection/deauth were not included in that release.
+- Earlier Kali boot animation/wallpaper installer and external USB stability handling.
+- The module asset was subsequently refreshed with the USB-guard/path fix (module v0.1.4); the public release tag remained v0.1.2.
+
+[Previous v0.1.2 release and downloads](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2)
+
+## Current feature status
 
 | Feature | Status |
 | --- | --- |
