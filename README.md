@@ -125,4 +125,4 @@ Use radio/HID tests only with your own devices and permission. [Additional test 
 - **Module problem:** disable `onyx_verified_wifi` in KernelSU and reboot without adapters. This restores the ROM internal driver; it does not replace your kernel or remove installed visuals.
 - **Phone cannot boot:** use recovery to restore your own pre-flash Boot backup to the original slot.
 
-[Source, patches and licences](SOURCE.md) · [Build guide](docs/BUILDING.md) · [Agent handover](docs/HANDOVER.md) · [Known issues](docs/KNOWN-ISSUES.md) · [Full changelog](CHANGELOG.md)
+[Source, patches and licences](SOURCE.md) · [Build guide](docs/BUILDING.md) · [Known issues](docs/KNOWN-ISSUES.md) · [Full changelog](CHANGELOG.md)
