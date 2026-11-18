@@ -1,0 +1,6 @@
+id=onyx_verified_wifi
+name=Onyx NetHunter Wi-Fi + Internal Bluetooth 
+version=v0.2.0
+versionCode=17
+author=Rohit Sharma (hcclubb)
+description=Guarded internal Wi-Fi, Archer/WN722N drivers, USB guard and internal Bluetooth bridge. Kali Bluetooth Start creates HCI; Android Bluetooth must be OFF. Kernel unchanged.

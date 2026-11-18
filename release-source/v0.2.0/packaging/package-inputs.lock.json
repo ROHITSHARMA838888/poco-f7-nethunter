@@ -1,0 +1,1655 @@
+{
+  "version": "v0.2.0",
+  "packages": [
+    {
+      "kind": "kernel",
+      "asset": "Onyx-NetHunter-v0.2.0-Kernel.zip",
+      "url": "https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.2.0/Onyx-NetHunter-v0.2.0-Kernel.zip",
+      "sha256": "d5e5c490f2d496513073ec3ba4ec89c71efcc5a554ce7c6d3c1c2b1c0e1c449b",
+      "entries": [
+        {
+          "name": "CREDITS.txt",
+          "sha256": "5633a97a9b43f00440f79ac7bcba1935bee1e3b428d5a19ccfcac95cb10243ad",
+          "template": "templates/kernel/CREDITS.txt",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "INSTALLER-NOTES.txt",
+          "sha256": "aa7d964534030ca69b436671880dfdfcde51409b31ae4e0913cd38c08c9ac97b",
+          "template": "templates/kernel/INSTALLER-NOTES.txt",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "Image",
+          "sha256": "02a8135044334ecf4c98d4ca804d2afcaf2f990f95825d9401e97c174e45eeea",
+          "template": null,
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "df6f65da47d459fdf2a2ef0eadb34f37d838befc91352b64a84f35507bea95cd",
+          "template": "templates/kernel/LICENSE",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "MAGISK-LICENSE",
+          "sha256": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+          "template": "templates/kernel/MAGISK-LICENSE",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "META-INF/com/google/android/update-binary",
+          "sha256": "81556383585ca242d682d91532458804c55ab2901a38b4257f270a03205e62a4",
+          "template": "templates/kernel/META-INF/com/google/android/update-binary",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2179792896,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "META-INF/com/google/android/updater-script",
+          "sha256": "32973f7f95a7ca60e4be7b740f05d5faa394c7a9cddea23fd3cf636cabb43711",
+          "template": "templates/kernel/META-INF/com/google/android/updater-script",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "SHA256SUMS",
+          "sha256": "822a9d881641bc93cd8c51243b1f6841c32acb0367676cbe13e07a54526cecb5",
+          "template": "templates/kernel/SHA256SUMS",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "TOOL-PROVENANCE.json",
+          "sha256": "5f1970ebf7261e2337dbfbe69e3f083e57451d9d7237dcf84420e16226ba4f8f",
+          "template": "templates/kernel/TOOL-PROVENANCE.json",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "anykernel.sh",
+          "sha256": "4282f8020efe5e824f1c35ad7d93387991015b1fda3542c682b68e24b0d60b98",
+          "template": "templates/kernel/anykernel.sh",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2179792896,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/CREDITS.txt",
+          "sha256": "5633a97a9b43f00440f79ac7bcba1935bee1e3b428d5a19ccfcac95cb10243ad",
+          "template": "templates/kernel/branding/CREDITS.txt",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/SHA256SUMS",
+          "sha256": "64e51e31856a44234c7a1d455ed387d239f58c3f8d6746918417f327a06e332b",
+          "template": "templates/kernel/branding/SHA256SUMS",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/UPSTREAM-LICENSE",
+          "sha256": "a45d0bb572ed792ed34627a72621834b3ba92aab6e2cc4e04301dee7a728d753",
+          "template": "templates/kernel/branding/UPSTREAM-LICENSE",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/WALLPAPER_SHA256SUMS",
+          "sha256": "103c9d76809db50ff684c6ecace43611e794ea53c706c50cd86f6fd50923fc89",
+          "template": "templates/kernel/branding/WALLPAPER_SHA256SUMS",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/bootanimation.zip",
+          "sha256": "096633128322ba738560e96972d130fb7226d811bf8d28a2e0edfaf50db5d389",
+          "template": null,
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/install-recovery.sh",
+          "sha256": "40c1c740020628873ec6a2c37368851c4f05eb93af1efa427366a422e18a0057",
+          "template": "templates/kernel/branding/install-recovery.sh",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/provenance.json",
+          "sha256": "67872b318132052c645f223a8cf904247bb7ef409c6139795ed18f3d055258e2",
+          "template": "templates/kernel/branding/provenance.json",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/wallpaper-helper.jar",
+          "sha256": "1413a351357bc1cf480f2f520b86efe62b015dda33a8be3d5d3554fb58d0e8a8",
+          "template": null,
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/wallpaper-once.sh",
+          "sha256": "1cb6b474577eb832da603a04ef01fe349ac501560ec058cadede1b43ea2c9e27",
+          "template": "templates/kernel/branding/wallpaper-once.sh",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/wallpaper.png",
+          "sha256": "d7a1aa1a462966d4f53aaeeba651a1187a725e7c936decbc6b8f524f9a9d2dae",
+          "template": null,
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2175008768,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "tools/ak3-core.sh",
+          "sha256": "62516b175d992b7c8886c1887e2b3b5f775a37a58ddaf4efbb26f05b714969f0",
+          "template": "templates/kernel/tools/ak3-core.sh",
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2179792896,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "tools/busybox",
+          "sha256": "4d60ab3f5a59ebb2ca863f2f514e6924401b581e9b64f602665c008177626651",
+          "template": null,
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2179792896,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "tools/magiskboot",
+          "sha256": "97e9ec75731103d31c9e1effca7a50c6444309ce8f78c2ec27e9fe721da4bb54",
+          "template": null,
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2179792896,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "tools/magiskpolicy",
+          "sha256": "83725b7c452c1d441acd851daaf1dffd15ef06d7b8dabac8a1215801d2b40796",
+          "template": null,
+          "date_time": [
+            2026,
+            10,
+            29,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2179792896,
+          "create_system": 3,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-phone/crimson-dragon-clean.jpg",
+          "sha256": "729dde243821716c4aed19c2f42b1587714d00bdc80823ce607d43ee32b33b75",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-phone/cyan-dragon-clean.jpg",
+          "sha256": "20e4183bda047881d70cd7d55eb51d9db37eedcf034ea5d14bbfbf2b57843dc7",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-phone/cyan-dragon.jpg",
+          "sha256": "28d725587d4cd45a5dbec1420bb70363bf23526b0044b06e93df9938fc6926e2",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-phone/emerald-dragon-clean.jpg",
+          "sha256": "36618ad1ca32646e360a8a440bc69189f0e567b74c8af20920b883270fb24148",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-phone/emerald-dragon.jpg",
+          "sha256": "a9ba9c55edd8a08c744caff653b3df9c4f8a1c465a0193a657c155c79cebd63b",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-4k-upscaled/crimson-dragon-clean.jpg",
+          "sha256": "5dd757c2f3d38c14a4726e4271bad639214db74da5bf29297992b918d8bfcb98",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-4k-upscaled/cyan-dragon-clean.jpg",
+          "sha256": "aa9f85a33716d0f62e502966c7cddd86d9300873f21538dde566a9b718f99e91",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-4k-upscaled/cyan-dragon.jpg",
+          "sha256": "b7c637f502c12a0cf72f8b4c36a8320cfb41a984ddda3670fe3dfa6b5afce48c",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-4k-upscaled/emerald-dragon-clean.jpg",
+          "sha256": "52b553dbd0277726c497cf0d093dc9539012683ae105722f2001c6455caea1c6",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/wallpapers-4k-upscaled/emerald-dragon.jpg",
+          "sha256": "a4f05bc26bf4f25c7e26e4e1c5778dfce492479ccd15fb6b087f042719365004",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/animated/cyan-dragon-loop.mp4",
+          "sha256": "1b5bf13fea2dbe2820a44d1b0866cbb174c09cac54017a29a6ff395e08afdc37",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/collection/animated/emerald-dragon-loop.mp4",
+          "sha256": "1e8ce63e845d9e5b98201fc20411fdf0d4a9ec00816d185d564b7ba162c9dbc5",
+          "template": null,
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "branding/blue-glitch-provenance.json",
+          "sha256": "975c73c86be326e9bbc60c8a05e730789274020f18fd147fbf350e471942cb1f",
+          "template": "templates/kernel/branding/blue-glitch-provenance.json",
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "CHANGELOG.txt",
+          "sha256": "3c3c74dc74adfbe510f3299e1519e98fb21a2103957c2a93ee9ae8b0afde99c2",
+          "template": "templates/kernel/CHANGELOG.txt",
+          "date_time": [
+            1980,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 25165824,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        }
+      ]
+    },
+    {
+      "kind": "module",
+      "asset": "Onyx-NetHunter-v0.2.0-WiFi-Bluetooth-KernelSU.zip",
+      "url": "https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.2.0/Onyx-NetHunter-v0.2.0-WiFi-Bluetooth-KernelSU.zip",
+      "sha256": "9248321dcb266c5499d09213fa847a0f958eb5ceeb85a5064c75ace0c91effc9",
+      "entries": [
+        {
+          "name": "bin/usb-auth-guard",
+          "sha256": "1642b1818a1272f855d5addbff092dda3ec146b171e7802ae867dc64a3fc5087",
+          "template": null,
+          "date_time": [
+            2026,
+            11,
+            4,
+            15,
+            46,
+            46
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/action.sh",
+          "sha256": "a26e12a45e40ee71478df25f98ff461df3b9604c52fd2236f1a27e48ca0d3be4",
+          "template": "templates/module/bluetooth/bridge/action.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            13,
+            2
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/cleanup.sh",
+          "sha256": "2b2b02b35c0fb36d3862d2e2fa98f167ad8258b024e26c5aa18bbc2444a8de69",
+          "template": "templates/module/bluetooth/bridge/cleanup.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            13,
+            2
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/ctl.sh",
+          "sha256": "d62543c0f5b79129bfe0e22917afd2f2a7789fad84be6c7b73fc19f8602636a0",
+          "template": "templates/module/bluetooth/bridge/ctl.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            13,
+            2
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/hci_vhci.ko",
+          "sha256": "ca1d805805e1339c10818ce064d1f24c2b85e8b64306b2cdf9085091c3a65113",
+          "template": null,
+          "date_time": [
+            2026,
+            11,
+            3,
+            21,
+            52,
+            30
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/hid/btk_server.py",
+          "sha256": "7b1538f1376e0119352bbfcf32c3d1601afe7ad2107738422f557035ae5aa110",
+          "template": "templates/module/bluetooth/bridge/hid/btk_server.py",
+          "date_time": [
+            2026,
+            11,
+            3,
+            22,
+            21,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/hid/bus.conf",
+          "sha256": "82bbaddfbdeb7f89f146fb9b50d41395c8e50c543318ba99c859e64db794b8b3",
+          "template": "templates/module/bluetooth/bridge/hid/bus.conf",
+          "date_time": [
+            2026,
+            11,
+            3,
+            22,
+            21,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/hid/pair-agent.py",
+          "sha256": "e3494b46ea863348094ec107d0dc6876e9dd6f99699130a9453afaa5d786ee97",
+          "template": "templates/module/bluetooth/bridge/hid/pair-agent.py",
+          "date_time": [
+            2026,
+            11,
+            3,
+            22,
+            21,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/hid/runner.py",
+          "sha256": "229128c35f25bfc9eab3dd5c9f4485835fd6f3fcb915ab0a7a35dbac9d0498e2",
+          "template": "templates/module/bluetooth/bridge/hid/runner.py",
+          "date_time": [
+            2026,
+            11,
+            3,
+            22,
+            21,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/hid/sdp_record.xml",
+          "sha256": "1ac652ed0a286ff512d7964430a8908d2268ed23be26605b77395a6267eada90",
+          "template": "templates/module/bluetooth/bridge/hid/sdp_record.xml",
+          "date_time": [
+            2026,
+            11,
+            3,
+            22,
+            21,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/hid-cleanup.sh",
+          "sha256": "e1b49ca3a44cb6630f802e1ff3356ec59cca08e51ce82de8219119bdd09b0a98",
+          "template": "templates/module/bluetooth/bridge/hid-cleanup.sh",
+          "date_time": [
+            2026,
+            11,
+            3,
+            22,
+            21,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/hid.sh",
+          "sha256": "783b45b8482bcb81fa2f2bf909198f38cd50709af562541e86d665b16993fb6d",
+          "template": "templates/module/bluetooth/bridge/hid.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            13,
+            2
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/install-hook.sh",
+          "sha256": "6c586948c6477a84953f7dd0d843bc13d60a74910f6d1eb7392c087d9b8fd89d",
+          "template": "templates/module/bluetooth/bridge/install-hook.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            58,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/kali-bluetooth",
+          "sha256": "38d21112f7d74116c87c274fca8af137db1f8e276695233b3660255b4fc17d4c",
+          "template": "templates/module/bluetooth/bridge/kali-bluetooth",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            58,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/payload.tar.gz",
+          "sha256": "4c8c4881c2b294965d77675b93d4111ec72591c9dd79933fce52b8a7c43173e4",
+          "template": null,
+          "date_time": [
+            2026,
+            11,
+            3,
+            21,
+            52,
+            30
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/README.txt",
+          "sha256": "2307a0880f9e96b462f4dc2558cbd273b5deccc0181a89328fd0618bb08915ec",
+          "template": "templates/module/bluetooth/bridge/README.txt",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            13,
+            2
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/run.sh",
+          "sha256": "f1770e80e37b30930d606a5fcc2b5abcef6526e401a4819a1bcb5670cae483e5",
+          "template": "templates/module/bluetooth/bridge/run.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            58,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/RUNTIME_SHA256SUMS",
+          "sha256": "a38815c19c046b145df3cdbcc1951e51591621b9390676d6cae7a3d5625d25d6",
+          "template": "templates/module/bluetooth/bridge/RUNTIME_SHA256SUMS",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            58,
+            38
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/session-supervisor",
+          "sha256": "b992d1a720debc7159d7eebd346615bd9b8dc0dcb85e1e1d331be9f32e6ad065",
+          "template": null,
+          "date_time": [
+            2026,
+            11,
+            3,
+            21,
+            52,
+            30
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/bridge/uninstall.sh",
+          "sha256": "43a89142324ab5eaba8165abf2a96e084a751825c96a2fd5213bffa2449ad472",
+          "template": "templates/module/bluetooth/bridge/uninstall.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            13,
+            2
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "bluetooth/hci_vhci.ko",
+          "sha256": "ca1d805805e1339c10818ce064d1f24c2b85e8b64306b2cdf9085091c3a65113",
+          "template": null,
+          "date_time": [
+            2026,
+            11,
+            12,
+            18,
+            1,
+            30
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "CREDITS.txt",
+          "sha256": "35b4f25e20941019c0ea959390b0d519de19299415206bc1d2a02ebfe22eea99",
+          "template": "templates/module/CREDITS.txt",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            58,
+            36
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "customize.sh",
+          "sha256": "924786bb56a22e44f31c88e72c8c4181a0fa2131e85cce0853794cbc77704d9e",
+          "template": "templates/module/customize.sh",
+          "date_time": [
+            2026,
+            11,
+            18,
+            20,
+            1,
+            58
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "DRIVER-LICENSE",
+          "sha256": "189b1af95d661151e054cea10c91b3d754e4de4d3fecfb074c1fb29476f7167b",
+          "template": "templates/module/DRIVER-LICENSE",
+          "date_time": [
+            2026,
+            10,
+            31,
+            18,
+            19,
+            50
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "drivers/8188eu.ko",
+          "sha256": "44a9160029c9fd3e7a40d58cb6e789a037736c416e5411c471495dacb0bd8c37",
+          "template": null,
+          "date_time": [
+            2026,
+            11,
+            1,
+            21,
+            12,
+            28
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "drivers/88XXau.ko",
+          "sha256": "eb5e3dc0ff366dd04cb1984922d403a1cfc76b354f764753bebfa6ae194e499a",
+          "template": null,
+          "date_time": [
+            2026,
+            11,
+            1,
+            21,
+            12,
+            28
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "GUARD_SHA256SUMS",
+          "sha256": "fbbaaace404ae3bf5cf738e531f23c1cf20bdd5cf8554cc0e7e5c4fcebfd1754",
+          "template": "templates/module/GUARD_SHA256SUMS",
+          "date_time": [
+            2026,
+            11,
+            18,
+            20,
+            2,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "install-monitor.sh",
+          "sha256": "63072a5640816914cac5ec2a9ab0ca19e5a3355bd17bafecdc230623581c62b8",
+          "template": "templates/module/install-monitor.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            11,
+            38,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/airmon-ng",
+          "sha256": "63e5ac4558a26b6efd68f9ef5372ef62be4e2617b0c80c89f683995abec4f22b",
+          "template": "templates/module/internal/airmon-ng",
+          "date_time": [
+            2026,
+            11,
+            3,
+            13,
+            54,
+            38
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/airmon-ng-android",
+          "sha256": "578194502f25917453226ffb0b0cf70d8d33173516fb91e3feaab4923fe915d9",
+          "template": "templates/module/internal/airmon-ng-android",
+          "date_time": [
+            2026,
+            11,
+            3,
+            13,
+            54,
+            38
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/onyx-monitor-base.sh",
+          "sha256": "84a9dfa3531448c9ea24ca37fde93cb4f59a1e36dcc2b6bdc2761512679da4b4",
+          "template": "templates/module/internal/onyx-monitor-base.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            11,
+            38,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/onyx-monitor.sh",
+          "sha256": "997960990e7be93ad4b4d03f7f96dcd208df0c5f494743a210a4847e5a27a624",
+          "template": "templates/module/internal/onyx-monitor.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            11,
+            38,
+            14
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/wlan/loader.sh",
+          "sha256": "a49d20af4bcc07d69d33e59dc83062994b09019008167261d489ceeaaffad6bf",
+          "template": "templates/module/internal/wlan/loader.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            17,
+            17,
+            40
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/wlan/qca_cld3_wcn7750.ko",
+          "sha256": "4d8d93b7154109fa840f1052fda7e19fc8da7085b3b985018bd280351a573c6d",
+          "template": null,
+          "date_time": [
+            2026,
+            11,
+            16,
+            11,
+            38,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/wlan/quiesce.sh",
+          "sha256": "2c6b97d2d8a31923cc50a03c9261f97caa408c3171a7d160ad8da422b06179bd",
+          "template": "templates/module/internal/wlan/quiesce.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            17,
+            17,
+            38
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/wlan/rollback.sh",
+          "sha256": "42873d953687217bfaad0d4f9e0471e27382215d223e1cd3a17317948c424eaa",
+          "template": "templates/module/internal/wlan/rollback.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            17,
+            17,
+            40
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/wlan/SOURCE.txt",
+          "sha256": "6953347d79a36e45151a49f7f81201b9ab97c1f586863d8a04df5c97cb06db8c",
+          "template": "templates/module/internal/wlan/SOURCE.txt",
+          "date_time": [
+            2026,
+            11,
+            16,
+            11,
+            40,
+            40
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "internal/wlan/UPSTREAM-NOTICES.txt",
+          "sha256": "506660f77a96fd04b75682320cf21ffac15b6020e23b6710b2a49a78b7aeff45",
+          "template": "templates/module/internal/wlan/UPSTREAM-NOTICES.txt",
+          "date_time": [
+            2026,
+            11,
+            16,
+            11,
+            38,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "module.prop",
+          "sha256": "69be79e339f79fdb7896fddfc8a6b7487f63c6eee843707463b1e265207f5ad7",
+          "template": "templates/module/module.prop",
+          "date_time": [
+            2026,
+            11,
+            18,
+            20,
+            1,
+            58
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "monitor-autoinstall.sh",
+          "sha256": "e4a09c743880d0f19de011c1739f7ccf3430881de9aae0f7aeb98b79d8f22553",
+          "template": "templates/module/monitor-autoinstall.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            11,
+            38,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "PACKAGE_SHA256SUMS",
+          "sha256": "635b76065ded83f992f4b8fc768d973362d1b113a1e8db053394380434de8548",
+          "template": "templates/module/PACKAGE_SHA256SUMS",
+          "date_time": [
+            2026,
+            11,
+            18,
+            20,
+            2,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "payload/load-drivers.sh",
+          "sha256": "5ba915d7733629d295d5270508836d10c13bd4dccf9b2798ab06b8fb5ec45e46",
+          "template": "templates/module/payload/load-drivers.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            11,
+            38,
+            14
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "payload/SHA256SUMS",
+          "sha256": "f91db6e6d1d2c88e600204d465e5a67a1e163e9f39df802d8ed825ee4eab3f76",
+          "template": "templates/module/payload/SHA256SUMS",
+          "date_time": [
+            2026,
+            11,
+            1,
+            21,
+            12,
+            28
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "README.txt",
+          "sha256": "ae01fc5fe74c37334feeceaba0896f182b7133e06c59ed5626019baf4f1d294f",
+          "template": "templates/module/README.txt",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            58,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "service.sh",
+          "sha256": "0eafd423226b8df2bf9541b8c64114c69ae928590b0893c44f8343d30b344ede",
+          "template": "templates/module/service.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            58,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "skip_mount",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "template": "templates/module/skip_mount",
+          "date_time": [
+            2026,
+            10,
+            31,
+            12,
+            41,
+            42
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "uninstall-monitor.sh",
+          "sha256": "58e8d087277b3a54fbb6e3e48e65e3125241b65f8832f8378381e633d412d3d5",
+          "template": "templates/module/uninstall-monitor.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            11,
+            38,
+            12
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        },
+        {
+          "name": "uninstall.sh",
+          "sha256": "b04ee31e5e136410669f50738052f64fcd6806c1e5ecbcf1592b7989bfbcf22a",
+          "template": "templates/module/uninstall.sh",
+          "date_time": [
+            2026,
+            11,
+            16,
+            20,
+            58,
+            0
+          ],
+          "compress_type": 8,
+          "external_attr": 2176188416,
+          "create_system": 0,
+          "extra": "",
+          "comment": "",
+          "flag_bits": 0
+        }
+      ]
+    }
+  ]
+}

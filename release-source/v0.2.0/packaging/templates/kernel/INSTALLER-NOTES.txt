@@ -1,0 +1,32 @@
+Onyx NetHunter v0.1.2-test | Rohit Sharma
+Poco F7 onyx; Infinity-X Android17 build1792766195 only.
+Kernel build41207879867, Image SHA256 02a8135044334ecf4c98d4ca804d2afcaf2f990f95825d9401e97c174e45eeea.
+Official AnyKernel3 source pin 41f04bdb4ee30a44e429c2c1131d5e8bb32b15f1.
+ARM64 busybox/magiskboot/magiskpolicy from official Magisk v31.1;
+see TOOL-PROVENANCE.json and MAGISK-LICENSE. Magisk app is NOT installed.
+Backend BOOTMODE is explicitly exported to the separate installer shell.
+Kernel-only split_boot retains compressed outgoing kernel; no ramdisk unpack.
+Recovery-only, active boot slot only, header-v4/no boot ramdisk/no GKI signature.
+Refuses reported locked bootloader. The owner's original kernel-only installer
+was installed and booted successfully, with actual fastboot unlock verified.
+THIS REPACKAGED THEME INSTALLER HAS NOT YET BEEN RECOVERY-TESTED OR FLASHED.
+Wi-Fi drivers use the separate matching KernelSU module.
+Official NetHunter boot animation and wallpaper are bundled in this kernel ZIP.
+No additional theme module: recovery replaces /system/media/bootanimation.zip
+only after verifying a linear (non-verity), writable ext4 active-system mapping.
+Original animation is backed up under /data/adb/onyx-branding and the initial
+system mount mode is restored. Refuses EROFS/verity/unknown mapping.
+An existing KernelSU Next service.d hook sets the home wallpaper once through
+Android's API, after owner-user unlock. No lock wallpaper change is requested.
+Original wallpaper files are backed up privately. The wallpaper hook is not a
+KernelSU module and does not continually overwrite later wallpaper choices.
+init_boot, vendor_boot, DTB and vbmeta partitions are not selected for writing.
+Theme helper's read-only API check passed on the phone; actual application and
+boot animation rendering remain untested. Keep this package marked test-only.
+User reports owning a backup of their current custom kernel.
+Kernel source: https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735/tree/7750565ada3d57e195798519b005d2b038e888c1
+KernelSU Next: https://github.com/KernelSU-Next/KernelSU-Next/tree/b427a3f9c2421a443f961007bfce66b25486643f
+
+Candidate supports reviewed Infinity-X 4.1/4.2 builds. Existing KernelSU is not required for kernel installation. Optional theme skips when its prerequisites are unavailable. Runtime testing on 4.2 is pending. VHCI is delivered as a separate matching KernelSU module, not built into Image.
+
+Installer r6: no ROM-name, Android-version, build/incremental or security-patch allowlist. Same kernel Image as r5. POCO F7/onyx only. Boot-layout/unlocked-bootloader checks retained. Other ROMs, including HyperOS/non-OSS configurations, are NOT confirmed compatible. Installer acceptance does not establish boot/vendor ABI compatibility. Matching r3 module retains its exact kernel and stock-WLAN checks.

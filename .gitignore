@@ -17,3 +17,21 @@ id_ed25519*
 /build-evidence/
 /repository-audit/
 /release-prep/
+
+# Local build/test outputs and private handover evidence.
+.private/
+/out/
+/rom-kernel/
+/vendor-modules/
+/inherited-evidence/
+/wlan-evidence/
+/vhci-evidence/
+/compiled-wlan-NOT-FLASHABLE/
+/verified-vhci/
+__pycache__/
+*.pyc
+*.pcap
+*.pcapng
+*.p12
+*.pfx
+*.jks
