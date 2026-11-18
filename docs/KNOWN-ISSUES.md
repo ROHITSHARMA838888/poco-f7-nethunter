@@ -10,4 +10,3 @@
 - **ROM compatibility:** latest runtime on Infinity-X 4.2; historical base on 4.1. Other ROMs / HyperOS / Android versions untested. Removed installer allowlists do not fix vendor ABI mismatches.
 - **Exact v0.2.0 flash test:** pending; code17 metadata and r6 installer packaging differ from prior tested ZIPs even though Image/driver bytes are unchanged.
 - **Source reproducibility:** workflow/source/ABI inputs and packaging are public; original Bluetooth dependency compiler/filesystem state is incompletely recorded. Functionally equivalent builds need tests; bit-identical source rebuild not promised.
-
