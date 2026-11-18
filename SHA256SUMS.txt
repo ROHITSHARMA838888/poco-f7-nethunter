@@ -1,2 +1,2 @@
-6726a91f195ba295c63499d0bd09f90fa5093701d56720630e6e27a091a859d6  Onyx-NetHunter-v0.1.2-test.zip
-ccc4fc8b2ad0c323172911247620447e58de0879f39e8e33287416146aede083  Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip
+d5e5c490f2d496513073ec3ba4ec89c71efcc5a554ce7c6d3c1c2b1c0e1c449b  Onyx-NetHunter-v0.2.0-Kernel.zip
+9248321dcb266c5499d09213fa847a0f958eb5ceeb85a5064c75ace0c91effc9  Onyx-NetHunter-v0.2.0-WiFi-Bluetooth-KernelSU.zip

@@ -1,0 +1,22 @@
+--- a/qcacld-3.0/components/mlme/dispatcher/src/wlan_mlme_api.c
++++ b/qcacld-3.0/components/mlme/dispatcher/src/wlan_mlme_api.c
+@@ -41,6 +41,7 @@
+ #include "../../core/src/wlan_cp_stats_defs.h"
+ #include "wlan_reg_services_api.h"
+ #include "wlan_policy_mgr_api.h"
++#include "cds_api.h"
+ 
+ /* quota in milliseconds */
+ #define MCC_DUTY_CYCLE 70
+@@ -6878,8 +6879,9 @@
+ bool wlan_mlme_is_sta_mon_conc_supported(struct wlan_objmgr_psoc *psoc)
+ {
+ #ifdef FEATURE_FRAME_INJECTION_SUPPORT
+-	/* Standard monitor VIFs need the complete STA + monitor lifecycle. */
+-	return true;
++	/* Preserve firmware capability policy in mission mode. */
++	if (cds_get_conparam() == QDF_GLOBAL_MONITOR_MODE)
++		return true;
+ #endif
+ 
+ 	if (wlan_mlme_get_monitor_mode_concurrency(psoc) ==

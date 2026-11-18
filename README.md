@@ -1,216 +1,128 @@
 <div align="center">
 
-# ONYX NETHUNTER
+# Onyx NetHunter
 
-### POCO F7 · Unofficial community kernel
+**POCO F7 / onyx · Unofficial · v0.2.0**
 
-**KernelSU Next · External Wi-Fi · USB HID**
+KernelSU Next · Internal & USB Wi-Fi · USB HID · Internal Bluetooth / VHCI
 
-[![Release](https://img.shields.io/badge/DOWNLOAD-v0.1.2-21c787?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2)
-[![Install](https://img.shields.io/badge/READ_FIRST-FLASH_GUIDE-f59e0b?style=for-the-badge&logo=readthedocs&logoColor=white)](#installation)
-[![Tests](https://img.shields.io/badge/VIEW-TEST_PHOTOS-6366f1?style=for-the-badge&logo=googlephotos&logoColor=white)](docs/testing/README.md)
+[![Kernel](https://img.shields.io/badge/Download-Kernel-20b981?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.2.0/Onyx-NetHunter-v0.2.0-Kernel.zip)
+[![Module](https://img.shields.io/badge/Download-KSU_Module-3b82f6?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.2.0/Onyx-NetHunter-v0.2.0-WiFi-Bluetooth-KernelSU.zip)
+[![Guide](https://img.shields.io/badge/Read-Flashing_Guide-f59e0b?style=for-the-badge)](#installation)
+[![Changelog](https://img.shields.io/badge/View-Changelog-6366f1?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.2.0)
 
-[![Updates](https://img.shields.io/badge/TELEGRAM-UPDATES-229ed9?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/POCO_F7_NETHUNTER)
-[![Discussion](https://img.shields.io/badge/TELEGRAM-DISCUSSION-229ed9?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/poco_f7_discussion)
-[![Source](https://img.shields.io/badge/EXACT-SOURCE_%26_PATCHES-475569?style=for-the-badge&logo=git&logoColor=white)](SOURCE.md)
-
-![Device](https://img.shields.io/badge/DEVICE-POCO_F7_%2F_ONYX-18181b?style=flat-square)
-![Kernel](https://img.shields.io/badge/LINUX-6.6.142-18181b?style=flat-square&logo=linux&logoColor=white)
-![ROM](https://img.shields.io/badge/TESTED-Infinity--X_4.1-18181b?style=flat-square)
-![Android](https://img.shields.io/badge/ANDROID-17-18181b?style=flat-square&logo=android)
-
-**Built for the tested onyx ROM setup. Original upstream authorship and licences retained.**
+[Updates](https://t.me/POCO_F7_NETHUNTER) · [Discussion](https://t.me/poco_f7_discussion) · [Test photos](docs/testing/README.md)
 
 </div>
 
-> [!WARNING]
-> **Read compatibility and backup requirements before flashing.** This release is tested only on **POCO F7 / onyx running the exact Infinity-X 4.1 Android 17 build below**. Other ROMs, newer builds and other devices are not verified. Do not bypass installer checks. Keep a working recovery method and your own pre-flash boot backup.
+## Compatibility
 
-> [!NOTE]
-> This is an **unofficial community project**, not an official Kali NetHunter release. The kernel ZIP and the KernelSU Wi-Fi module are separate packages with different installation methods.
+- **Device:** POCO F7 / `onyx` only.
+- **Tested ROMs:** Infinity-X 4.1 and 4.2, Android 17. The latest combined Wi-Fi/Bluetooth runtime tests were on 4.2.
+- **Kernel:** Linux `6.6.142-4k-g7750565ada3d-dirty`.
+- Other ROMs may be compatible but are untested, including HyperOS. ROM/Android build-date allowlists are removed; compatible vendor drivers and boot layout are still required.
+- Kernel Image is unchanged from the working build. This release updates the installer and the combined module; it does **not** contain the abandoned SUSFS / KernelSU Next v3.4.2 experiment.
+- The revised unrestricted installer/versioned packages have passed offline checks; the exact new release ZIPs have not yet received a fresh flash test.
 
-**Quick navigation:** [Compatibility](#tested-device-and-rom) · [Features](#features-and-test-status) · [Downloads](#downloads) · [Installation](#installation) · [Rollback](#rollback-and-recovery) · [Photos](#testing-photos) · [Credits](#credits-and-source-links)
+## Version history
 
-## Tested device and ROM
+### v0.2.0 — New update
 
-| Item | Verified setup |
-| :--- | :--- |
-| Device | **POCO F7** |
-| Codename | **onyx** |
-| ROM | **Infinity-X 4.1** |
-| Android / SDK | **Android 17 / SDK 37** |
-| ROM incremental | `1792766195` |
-| Security patch | `2026-10-01` |
-| Recovery used | **OrangeFox R12, unofficial** |
-| Kernel version | **Linux 6.6.142** |
-| Exact running kernel release | `6.6.142-4k-g7750565ada3d-dirty` |
-| Wi-Fi module version | `v0.1.2-dual-wifi-fix` · versionCode `4` |
+- Internal Wi-Fi injection and targeted deauth added and tested, with the guarded normal/monitor driver.
+- Internal Bluetooth bridge and VHCI integrated into the same KSU module; Kali Start/UP/Stop tested.
+- Blue Glitch boot animation and wallpaper collection in the newer kernel installer; APKs/chroot remain separate.
+- ROM/Android build-date allowlists removed from the kernel installer; essential device/layout checks remain.
+- Same working kernel Image; combined module updated to v0.2.0 / code 17. No SUSFS included.
 
-Matching only the Android version or “GKI 6.6” is **not** sufficient. The kernel must match the ROM's vendor-module ABI and the boot layout. An OTA or another Infinity-X build needs a new compatibility review.
+[v0.2.0 downloads and full changelog](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.2.0)
 
-### Kernel base
+### v0.1.2 — Previous public release
 
-The current build uses [xiaomi-onyx-playground/android_kernel_xiaomi_sm8735](https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735/tree/7750565ada3d57e195798519b005d2b038e888c1), pinned to:
+- Original working KernelSU Next kernel for POCO F7 / onyx.
+- Archer T2U Plus and TL-WN722N v2/v3 external Wi-Fi support, monitor/injection/deauth and MDK tests.
+- USB HID keyboard typing tested.
+- Internal Wi-Fi monitor mode; internal injection/deauth were not included in that release.
+- Earlier Kali boot animation/wallpaper installer and external USB stability handling.
+- The module asset was subsequently refreshed with the USB-guard/path fix (module v0.1.4); the public release tag remained v0.1.2.
 
-```text
-7750565ada3d57e195798519b005d2b038e888c1
-```
+[Previous v0.1.2 release and downloads](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2)
 
-**This release is not Konoha-based.** The early Konoha 6.6.143 experiment compiled but did not match the tested ROM's module ABI. Old Actions outputs are historical build evidence, **not downloads to flash**. Use the release assets below.
+## Current feature status
 
-## Features and test status
+| Feature | Status |
+| --- | --- |
+| KernelSU Next | Existing working root integration |
+| Internal Wi-Fi | 2.4 GHz monitor mode, probe injection and targeted deauth tested and working |
+| Archer T2U Plus / TL-WN722N v2/v3 | Existing fixed drivers; monitor, injection and deauth working |
+| USB stability guard | Automatic adapter handling and reconnect fixes |
+| USB HID | Keyboard typing tested; gadget activation is separate |
+| Internal Bluetooth / VHCI | Kali service Start creates HCI; interface UP and Stop/restore tested |
+| Normal use | Wi-Fi, hotspot and earbuds audio tested on the guarded internal driver |
+| Visuals | Blue Glitch boot animation and wallpaper collection installer |
 
-| Component | What is included / verified |
-| :--- | :--- |
-| **KernelSU Next** | Real pinned source integration; Android boot and root verified |
-| **Archer T2U Plus** | `88XXau`, USB `2357:0120`; monitor transitions, monitor-UP and bounded probe injection verified |
-| **TL-WN722N v2/v3** | `8188eu`, USB `2357:010c`; monitor transitions, monitor-UP, LED and bounded probe injection verified |
-| **Probe injection** | Each adapter returned **29/30 directed replies** in one test against the tester's own phone hotspot |
-| **Deauthentication** | Both adapters tested on an owned hotspot; client interruption/reconnection observed |
-| **MDK** | Tested and working |
-| **Internal Wi-Fi** | Monitor mode working; injection and deauthentication support planned for future investigation |
-| **Persistent Wi-Fi module** | Both fixed drivers auto-load after reboot; post-reboot adapter attachment checked |
-| **USB stability guard** | Targeted ROM USB-reset workaround; hub permissions restored after unplug |
-| **USB HID** | Windows HID enumeration and actual keyboard typing verified (`hid test ok`); standalone HID switch is not included |
-| **Kali theme** | Boot animation and wallpaper installation included with the kernel installer |
-| **Runtime protections** | CFI/KCFI and KASAN retained; callback fixes do not bypass these checks |
-
-The Wi-Fi drivers and USB guard live in the **separate KernelSU module**. Kali applications, NetHunter APKs and Kali chroot/rootfs are **not bundled** in the kernel ZIP.
-
-### Additional tests and remaining limits
-
-- Deauthentication was tested with both external adapters against an owned hotspot; the maintainer also reports successful manual testing on another phone.
-- MDK is **tested and working**.
-- Internal Wi-Fi **monitor mode is working**. Injection and deauthentication are not currently supported; we will investigate adding support in future updates.
-- WN722N **v1 is excluded** from the Wi-Fi module.
-- Other adapters, other ROMs, all frame types and long-term stability are **not qualified**.
-- Photos of a detected interface or a lit LED alone do not prove packet transmission.
-
-Final bounded tests showed no reboot or new adapter-test kernel warning. That is a scoped test result, not a guarantee against every future fault.
-
-See [CHANGELOG.md](CHANGELOG.md) for the latest validation update.
-
-## Downloads
-
-Each button downloads only the file named in its row. **Download both ZIPs.**
-
-| Download | Exact file | Install with / purpose |
-| :--- | :--- | :--- |
-| [![Kernel ZIP](https://img.shields.io/badge/ORANGEFOX-KERNEL_ZIP-22c55e?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-v0.1.2-test.zip) | [Onyx-NetHunter-v0.1.2-test.zip](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-v0.1.2-test.zip) | **OrangeFox recovery → Install** — KernelSU Next kernel + theme installer |
-| [![Wi-Fi module](https://img.shields.io/badge/KERNELSU-WI--FI_MODULE-3b82f6?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip) | [Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip) | **KernelSU Next Manager → Modules** — External adapter drivers + USB guard |
-| [![Checksums](https://img.shields.io/badge/VERIFY-SHA256SUMS-64748b?style=for-the-badge)](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/SHA256SUMS.txt) | [SHA256SUMS.txt](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/download/v0.1.2/SHA256SUMS.txt) | Optional download verification — Check downloaded files |
-
-[View all files on the release page](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2)
-
-The kernel filename retains `test` because the release uses the exact device-tested binary. It is not a claim of broad stable-device support. GitHub's automatic **Source code** archives are source downloads, **not flashable ZIPs**.
+Bluetooth discovery/SDP were tested previously; Bluetooth HID pairing remains unresolved. VHCI does not mean every Bluetooth attack is supported. NetHunter APKs and the Kali chroot are **not included**. Root/integrity detection by banking apps remains unresolved.
 
 ## Installation
 
-> [!WARNING]
-> Only for the **tested POCO F7 / onyx + Infinity-X 4.1 Android 17 build** listed above. Keep the bootloader unlocked, a working recovery and **your own current Boot backup**. Remove all adapters/OTG before starting.
+Back up your current **Boot** partition, keep recovery available and unplug OTG adapters. Keep the bootloader unlocked. Stop active monitor and Kali Bluetooth sessions before updating/rebooting.
 
-### Part 1 — Flash the kernel in OrangeFox
+### 1. Kernel ZIP — OrangeFox recovery
 
-1. Copy **`Onyx-NetHunter-v0.1.2-test.zip`** to your phone.
-2. Reboot into **OrangeFox recovery**.
-3. Open **Backup → Boot** and save a backup of the currently active slot.
-4. Open **Install**, select the **kernel ZIP**, and swipe to flash.
-5. When it finishes successfully, tap **Reboot System** and unlock the phone.
+1. Download **`Onyx-NetHunter-v0.2.0-Kernel.zip`**.
+2. Reboot to **OrangeFox** (tested recovery: unofficial R12).
+3. Select **Install → kernel ZIP → Flash**.
+4. Reboot to Android and confirm KernelSU Next root works.
 
-### Part 2 — Install the Wi-Fi module in Android
+Already running the exact matching kernel? You can keep it and update only the module. The newer animation/wallpaper installer requires the newer kernel ZIP; module-only updates do not replace these visuals.
 
-1. Open **KernelSU Next Manager** and confirm root works.
-2. Open **Modules → Install**.
-3. Select **`Onyx-NetHunter-WiFi-v0.1.2-KernelSU.zip`**.
-4. After a successful install, **reboot with adapters unplugged**.
-5. Unlock the phone and wait about **30 seconds**, then connect **one adapter at a time**.
+### 2. Combined module — KernelSU Next Manager
 
-> [!IMPORTANT]
-> **Kernel ZIP → OrangeFox. Wi-Fi ZIP → KernelSU Next.** Do not swap them. **No data wipe or format is needed.** Do not flash `vbmeta`, `init_boot` or `vendor_boot`, switch slots blindly or bypass installer checks.
+1. Stop internal monitor mode and Kali Bluetooth. Turn hotspot off for initial activation.
+2. Open **KernelSU Next → Modules → Install**.
+3. Select **`Onyx-NetHunter-v0.2.0-WiFi-Bluetooth-KernelSU.zip`**.
+4. Reboot, unlock and allow about **90 seconds** for startup checks.
+5. Connect one USB adapter at a time if needed.
 
-> [!CAUTION]
-> If an error appears, **stop and save the log**. A theme error can occur after the kernel was written. If an adapter causes reboot, unplug OTG and stop testing. Reboot temporarily disconnects your hotspot.
+This updates the same `onyx_verified_wifi` module. A known separate `onyx_internal_bluetooth` companion is backed up and disabled to avoid duplicate loaders. No new kernel recompile is needed for these module features.
 
-The kernel installer also includes the Kali boot animation and wallpaper setup. Already using this exact working kernel and module? **No need to flash again.**
+**Kernel ZIP goes in recovery. Module ZIP goes in KernelSU Next. No data wipe is needed.** If installation fails, save the log and stop. Do not relock the bootloader on this custom setup or flash unrelated `vbmeta`/vendor partitions.
 
-[Detailed compatibility and rollback information →](INSTALL.md)
+## Commands
 
-## Rollback and recovery
+### Internal Wi-Fi — Kali root terminal
 
-| Problem | Next step |
-| :--- | :--- |
-| Adapter repeatedly disconnects or triggers a reboot | Unplug OTG first; stop further radio tests |
-| Module causes problems but Android boots | Disable `onyx_verified_wifi` in KernelSU, then reboot without adapters |
-| Need an earlier module | Reinstall your saved known-good module ZIP in KernelSU; reboot with adapters removed |
-| Android cannot boot | Use your previously verified recovery/fastboot method and restore **your own pre-flash Boot backup to its original slot** |
-| Theme install failed | Preserve the recovery log and theme backup/state; determine whether the kernel write already completed |
+```sh
+uname -r
+airmon-ng start wlan0 6
+iw dev wlan0 info
+# When finished, always restore normal Wi-Fi before rebooting:
+airmon-ng stop wlan0
+```
 
-The earlier v0.1.1 module's WN driver predates the current fixes; it is not injection-qualified. Disabling a module does not restore a different kernel or remove theme files. Do not use another person's boot image, format data, switch slots blindly or flash `vbmeta` as a generic repair.
+The interface remains `wlan0`. Internal helper channels are **1–11**; replace `6` with your test network's channel. Turn phone hotspot off first. For USB adapters, identify their interface with `airmon-ng`; do not assume `wlan0` is the USB adapter.
 
-## About the USB guard
+### Internal Bluetooth — Kali root terminal
 
-This module includes a targeted workaround for the ROM USB HAL resetting the parent hub when these adapters are connected. For the exact supported USB IDs it temporarily removes write permission from the parent hub's `authorized` inode and restores the original mode after unplug/exit. An independent restore child holds the original inode.
+Turn **Android Bluetooth OFF**, open Kali, then:
 
-The HAL stays running; the guard does not write the USB authorization value, change the USB role, stop a system service or change SELinux policy. **Other devices sharing that hub may have reset recovery affected while an adapter is attached.** A proper vendor HAL source fix would replace this workaround.
+```sh
+service bluetooth start
+hciconfig -a
+hciconfig hci0 up
+# Finish before enabling Android Bluetooth / using earbuds:
+service bluetooth stop
+```
 
-## Testing photos
+Start automatically opens the bridge; no manual `insmod` is needed. The HCI number can vary—use the one shown by `hciconfig -a`. Do not enable Android Bluetooth during the Kali session. The bridge has a 30-minute session limit.
 
-<table>
-<tr>
-<td align="center"><strong>Adapter monitor-mode status</strong><br><a href="docs/testing/images/monitor-mode-adapters.jpg"><img src="docs/testing/images/monitor-mode-adapters.jpg" width="300" alt="Terminal showing monitor-mode status for the two external adapters"></a></td>
-<td align="center"><strong>Archer OTG setup</strong><br><a href="docs/testing/images/archer-physical-setup.jpg"><img src="docs/testing/images/archer-physical-setup.jpg" width="300" alt="User-provided Archer adapter and phone OTG setup"></a></td>
-</tr>
-</table>
+Use radio/HID tests only with your own devices and permission. [Additional test guidance](docs/TESTING.md).
 
-**[Open the full annotated photo gallery →](docs/testing/README.md)**
+## Troubleshooting / rollback
 
-Photos illustrate adapter detection and physical setup. They do not independently identify the exact ROM/kernel revision or prove injection. The separate bounded probe-injection tests returned **29/30 replies on each adapter**. A network-address photo was excluded for privacy.
+- **No HCI:** Android Bluetooth OFF, Kali open, run `service bluetooth start` and save its full error.
+- **Internal driver unavailable:** stop monitor mode before reboot. The loader stops safely if a session, unsupported driver or incomplete prior startup is detected; report the log instead of forcing a load.
+- **Adapter disconnect/reboot:** remove OTG and stop testing.
+- **Module problem:** disable `onyx_verified_wifi` in KernelSU and reboot without adapters. This restores the ROM internal driver; it does not replace your kernel or remove installed visuals.
+- **Phone cannot boot:** use recovery to restore your own pre-flash Boot backup to the original slot.
 
-## Source and build information
-
-| Component | Pin / build |
-| :--- | :--- |
-| Kernel source | `7750565ada3d57e195798519b005d2b038e888c1` |
-| KernelSU Next | `b427a3f9c2421a443f961007bfce66b25486643f` |
-| RTL8812AU source | `734485506a30d6237c2deaad666a19f8ca5379f2` |
-| RTL8188EUS source | `af3bf004458f76b7aec33e9ba552cd382ed1f5c3` |
-| Kernel compiler | Official apt LLVM **22.1.8**; not the original ROM's exact Android Clang |
-| Kernel build | [41207879867](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/actions/runs/41207879867) |
-| Archer fix build | [41297489306](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/actions/runs/41297489306) |
-| WN722N fix build | [41316130882](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/actions/runs/41316130882) |
-
-Static ROM comparison checked **959 module files / 575 unique modules with zero CRC mismatches**. Final external modules matched **201 imported symbols for Archer and 198 for WN722N**, including namespace checks. This supports the exact tested setup; it does not establish compatibility with another ROM.
-
-[Exact source and build provenance](SOURCE.md) · [Configuration, patches and installer/module source](release-source/v0.1.2) · [ABI summary](compatibility/ABI-STATUS.md)
-
-## Credits and source links
-
-Thank you to the original developers and all Linux, Android, Qualcomm and Realtek contributors. Downstream integration and branding do not replace their authorship or licences.
-
-| Project / contributors | Contribution | Source |
-| :--- | :--- | :--- |
-| **xiaomi-onyx-playground** | POCO F7 / onyx kernel base | [Kernel repository](https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735) |
-| **KernelSU Next** | Kernel-integrated root | [KernelSU Next](https://github.com/KernelSU-Next/KernelSU-Next) |
-| **aircrack-ng / Realtek contributors** | Archer driver | [RTL8812AU](https://github.com/aircrack-ng/rtl8812au) |
-| **aircrack-ng / Realtek contributors** | WN722N v2/v3 driver | [RTL8188EUS](https://github.com/aircrack-ng/rtl8188eus) |
-| **osm0sis / AnyKernel3 contributors** | Recovery installer framework | [AnyKernel3](https://github.com/osm0sis/AnyKernel3) |
-| **topjohnwu / Magisk contributors** | Installer utilities | [Magisk v31.1](https://github.com/topjohnwu/Magisk/releases/tag/v31.1) |
-| **Kali Linux / NetHunter contributors** | Boot animation and wallpaper | [Artwork upstream](https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-installer) |
-
-Read [CREDITS.txt](CREDITS.txt) for exact additional provenance. Original component licences apply; keep notices and provide applicable corresponding sources/modifications when redistributing.
-
-## Support and bug reports
-
-[![Ask for help](https://img.shields.io/badge/ASK_FOR_HELP-DISCUSSION_GROUP-229ed9?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/poco_f7_discussion)
-
-Include device/codename, ROM build/incremental/security patch, `uname -r`, KernelSU and module versions, adapter model/USB ID and the exact steps. Say whether the problem happens at boot, attachment, mode change or transmission. Remove MAC/BSSID, IP addresses, tokens and personal data from public screenshots/logs. Never publish boot backups or raw private crash buffers.
-
----
-
-<div align="center">
-
-**POCO F7 / onyx · Unofficial · Tested on the documented setup**
-
-[Updates](https://t.me/POCO_F7_NETHUNTER) · [Discussion](https://t.me/poco_f7_discussion) · [Downloads](https://github.com/ROHITSHARMA838888/poco-f7-nethunter/releases/tag/v0.1.2) · [Source](SOURCE.md)
-
-</div>
+[Source, patches and licences](SOURCE.md) · [Full changelog](CHANGELOG.md)
