@@ -1,0 +1,14 @@
+{
+  "nethunter-bootanimation-original.zip": {
+    "sha256": "cd1e38dde0c8adb6c7df93786249ebbebd431ea17f1cd4c9636f5f0caea39382",
+    "git_blob": "124e893c63596552d31832dbf67b5683b1e357c1",
+    "bytes": 13135161
+  },
+  "nethunter-wallpaper-original.png": {
+    "sha256": "d7a1aa1a462966d4f53aaeeba651a1187a725e7c936decbc6b8f524f9a9d2dae",
+    "git_blob": "49b05960135ed49644e80f9ba57dffe750a633dc",
+    "bytes": 1139831
+  },
+  "upstream": "https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-installer",
+  "commit": "aa1dca61435cc8a7e9f4053234c731855329e69b"
+}

@@ -1,0 +1,11 @@
+# Source scripts should run on Linux after a Windows checkout.
+*.sh text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+# Packaging fixtures and ABI inputs are hash-locked byte sequences.
+/release-source/v0.2.0/packaging/templates/** -text -whitespace
+/build-inputs/v0.2.0/** -text -whitespace
+# Preserve literal patch context and export tables, including empty fields.
+*.patch -whitespace
+*.symvers -whitespace

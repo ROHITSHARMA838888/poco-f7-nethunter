@@ -1,0 +1,20 @@
+#!/system/bin/sh
+# Onyx WCN7750 Android compatibility entry point.
+PATH=/system/bin:/system/xbin:/vendor/bin:/data/adb/ksu/bin
+export PATH
+M=/data/adb/modules/onyx_verified_wifi
+[ "$(id -u)" = 0 ] || { echo 'Open a root shell using su first.' >&2; exit 1; }
+[ ! -f "$M/disable" ] && [ ! -f "$M/remove" ] || { echo 'Onyx Wi-Fi module is disabled.' >&2; exit 1; }
+case "${1:-}:${2:-}" in
+ start:wlan0) exec /system/bin/sh "$M/internal/onyx-monitor.sh" start "${3:-6}" ;;
+ stop:wlan0) exec /system/bin/sh "$M/internal/onyx-monitor.sh" stop ;;
+ *)
+  for root in /data/local/nhsystem/kali-arm64 /data/local/stryker/release; do
+   if [ -x "$root/usr/sbin/airmon-ng.distrib" ]; then
+    exec chroot "$root" /usr/bin/env PATH=/usr/sbin:/usr/bin:/sbin:/bin /usr/sbin/airmon-ng.distrib "$@"
+   fi
+  done
+  echo 'Usage: airmon-ng start wlan0 [channel 1-11] | stop wlan0'
+  exit 1
+  ;;
+esac

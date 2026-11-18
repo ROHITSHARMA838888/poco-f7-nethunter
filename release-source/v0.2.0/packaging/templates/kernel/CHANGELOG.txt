@@ -1,0 +1,6 @@
+Onyx NetHunter v0.2.0
+Same working Linux 6.6.142 Image and existing KernelSU Next source.
+ROM/Android build-date allowlists removed; onyx/boot-layout checks retained.
+Blue Glitch boot animation and wallpaper assets. No bundled APKs or Kali chroot.
+Install matching v0.2.0 KSU module for updated internal Wi-Fi and Bluetooth.
+No SUSFS or KernelSU Next v3.4.2 from the abandoned experiment.

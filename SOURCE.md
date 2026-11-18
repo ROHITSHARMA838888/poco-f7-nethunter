@@ -1,4 +1,4 @@
-# Exact source and build provenance — v0.1.2
+# Exact source and build provenance — v0.1.2 and v0.2.0
 
 Current base is NOT Konoha. Original authorship and licences remain applicable.
 
@@ -30,3 +30,7 @@ Packaging scripts, module scripts and integration patches: [release-source/v0.2.
 Internal WLAN module upstream: [xiaomi-onyx-playground modules](https://github.com/xiaomi-onyx-playground/android_kernel_xiaomi_sm8735-modules/tree/02727998cd386983341bfc79c34dd20f5be7fb1b), injection patch from [Loukious](https://github.com/Loukious/vendor_qcom_opensource_wlan/commit/25875eb1a65e94fae404c6e9188c7a1fe679e0f5), plus the included mission-mode capability guard. Guarded build evidence: Actions run 43794293758. Driver SHA256 `4d8d93b7154109fa840f1052fda7e19fc8da7085b3b985018bd280351a573c6d`.
 
 Bluetooth bridge uses [mer-hybris/bluebinder](https://github.com/mer-hybris/bluebinder/tree/ebab7c3c3fb15f0eea4db0ff14837066a716f973) with included AIDL adaptation and session-supervisor sources; libgbinder/libglibutil original notices remain. Existing Realtek, guard, tool and artwork source references/licences remain as documented in this repository and the package notices. These upstream components are not claimed as original project code.
+
+## Rebuilding and continuing development
+
+Start with [BUILDING](docs/BUILDING.md), [HANDOVER](docs/HANDOVER.md), [KNOWN ISSUES](docs/KNOWN-ISSUES.md) and the root `AGENTS.md`. Public config/CRC inputs are in `build-inputs/v0.2.0`; new manual driver workflows do not depend on expiring baseline artifacts. All current release text sources and binary input hashes are recorded in `release-source/v0.2.0/packaging`. `scripts/package_release.py` rebuilds ZIP content from those sources and supplied/locked binary inputs. A packaging round-trip is not a source compilation; historical Bluetooth/compiler bit-reproducibility limitations are explicitly documented in the build guide. Source/config/patches remain open; only private device data and credentials are excluded.

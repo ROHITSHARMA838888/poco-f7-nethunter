@@ -1,0 +1,7 @@
+{
+  "repository": "https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-bootanimation",
+  "commit": "bbae5ae967df5348adbb987ecdfc1e326f4b180e",
+  "source_sha256": "9f6d3bbb4c26a0d5e2cadd97c113d58f7c1008ca2e6edbf02734f3610121be2c",
+  "fit": "contain/pad 1280x2772, original24fps; no artificial intermediate frames",
+  "frames": 230
+}

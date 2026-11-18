@@ -1,0 +1,13 @@
+#!/bin/sh
+# Onyx internal Bluetooth bridge integration; original BlueZ script preserved.
+set -eu
+ORIG=/etc/init.d/bluetooth.onyx-original
+HOST=/proc/1/root
+CTL=/data/adb/modules/onyx_verified_wifi/bluetooth/bridge/ctl.sh
+bridge() { /usr/sbin/chroot "$HOST" /system/bin/sh "$CTL" "$1"; }
+case "${1:-status}" in
+ start) bridge start; if ! "$ORIG" start; then bridge stop; exit 1; fi;;
+ stop) rc=0; "$ORIG" stop || rc=$?; bridge stop || exit $?; exit "$rc";;
+ restart|force-reload) "$0" stop; "$0" start;;
+ *) exec "$ORIG" "$@";;
+esac
