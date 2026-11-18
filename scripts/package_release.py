@@ -58,6 +58,10 @@ def build(args):
      if not line.strip():continue
      _,rel=line.split('  ',1)
      full=str(PurePosixPath(prefix)/safe_name(rel))
+     # This manifest is installed alongside driver copies in /data/adb,
+     # while those binaries live in drivers/ inside the module ZIP.
+     if package['kind']=='module' and name=='payload/SHA256SUMS' and rel in ('88XXau.ko','8188eu.ko'):
+      full='drivers/'+rel
      if full not in data:raise ValueError('Manifest input absent: '+full)
      lines.append(digest(data[full])+'  '+rel)
     data[name]=('\n'.join(lines)+'\n').encode()
